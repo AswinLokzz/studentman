@@ -1,0 +1,37 @@
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .app-name {
+    font-size: 1.5em;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .active-link {
+    background-color: rgb(93, 183, 197)
+  }
+
+  button{
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  div button{
+    margin-right: 20px;
+  }
+
+  .mat-menu:hover{
+    background-color: grey;
+    
+    
+  }

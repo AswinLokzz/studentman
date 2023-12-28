@@ -1,0 +1,24 @@
+<!-- studentsidebar.component.html -->
+
+<mat-card class="sidebar-card">
+  <mat-card-header>
+    <mat-card-title>STUDENT MANAGEMENT</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <button (click)="navigateToStudentsList()">
+      
+        <mat-icon>people</mat-icon>
+        <span class="nav-label">Students List</span>
+      
+    </button>
+    <br>
+    <br>
+    <button (click)="navigateToAddStudent()">
+      
+        <mat-icon>edit</mat-icon>
+        <span class="nav-label">Add Student</span>
+     
+    </button>
+  </mat-card-content>
+</mat-card>

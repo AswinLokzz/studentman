@@ -1,0 +1,168 @@
+<mat-card-content>
+  <form (submit)="onAddStudent(studentForm)" #studentForm="ngForm">
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Full Name:</mat-label>
+      
+      <input matInput type="string"
+      name="Fullname"
+      ngModel
+      required="true"
+      >
+    </mat-form-field>
+
+    <br />
+
+
+    <mat-form-field>
+      <mat-label>Gender:</mat-label>
+     
+
+      <mat-select type="string"
+      name="Gender"
+      ngModel
+      required="true">
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br />
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Year:</mat-label>
+      
+
+      <mat-select type="string"
+      name="Year"
+      ngModel
+      required="true">
+        <mat-option value="First">First</mat-option>
+        <mat-option value="Second">Second</mat-option>
+        <mat-option value="Third">Third</mat-option>
+        <mat-option value="Fourth">Fourth</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <mat-label>Semester:</mat-label>
+   
+
+      <mat-select type="string"
+      name="Semester"
+      ngModel
+      required="true">
+        <mat-option value="S1">S1</mat-option>
+        <mat-option value="S2">S2</mat-option>
+        <mat-option value="S3">S3</mat-option>
+        <mat-option value="S4">S4</mat-option>
+        <mat-option value="S5">S5</mat-option>
+        <mat-option value="S6">S6</mat-option>
+        <mat-option value="S7">S7</mat-option>
+        <mat-option value="S8">S8</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br />
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>District:</mat-label>
+     
+
+      <mat-select type="string"
+      name="District"
+      ngModel
+      required="true">
+        <mat-option value="Kasargod">Kasargod</mat-option>
+        <mat-option value="Malappuram">Malappuram</mat-option>
+        <mat-option value="Wayanad">Wayanad</mat-option>
+        <mat-option value="Kannur">Kannur</mat-option>
+        <mat-option value="Kozhikode">Kozhikode</mat-option>
+        <mat-option value="Palakad">Palakad</mat-option>
+        <mat-option value="Thrissur">Thrissur</mat-option>
+        <mat-option value="Ernakulam">Ernakulam</mat-option>
+        <mat-option value="Idukki">Idukki</mat-option>
+        <mat-option value="Alappuzha">Alappuzha</mat-option>
+        <mat-option value="Kottayam">Kottayam</mat-option>
+        <mat-option value="Pathanamthitta">Pathanamthitta</mat-option>
+        <mat-option value="Kollam">Kollam</mat-option>
+        <mat-option value="Trivandrum">Trivandrum</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <textarea 
+      matInput
+      type="string"
+      name="Address"
+      ngModel
+      required="true">
+    </textarea>
+    </mat-form-field>
+  </div>
+  <br />
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Enter your email</mat-label>
+      <input
+        type="string"
+        name="Email"
+
+      
+        matInput
+        placeholder="pat@example.com"
+        [formControl]="email"
+        required
+      />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+      <mat-label>USERNAME:</mat-label>
+
+      <input matInput
+      type="string"
+      name="Username"
+      ngModel
+      required="true">
+    </mat-form-field>
+  </div>
+  <br />
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" 
+      type="string"
+      name="Password"
+      ngModel
+      required="true">
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+
+
+
+    </mat-form-field>
+  </div>
+
+  <button  mat-button class="submitbutton" type="submit">SUBMIT</button>
+</form>
+</mat-card-content>
+<!-- <button mat-stroked-button type="button"(click)="filepicker.click()">  
+  Pick Image  
+</button>  
+<input type="file" #filepicker (change) = "onFileSelected($event)">   -->
+

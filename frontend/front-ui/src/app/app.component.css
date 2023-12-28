@@ -1,0 +1,11 @@
+/* app.component.css */
+
+body {
+    margin: 0;
+    padding-bottom: 100px; /* Adjust as needed based on the footer height */
+  }
+  
+  .main-content {
+    min-height: calc(97.3vh - 97.3px); /* Adjust as needed based on the footer height */
+  }
+  

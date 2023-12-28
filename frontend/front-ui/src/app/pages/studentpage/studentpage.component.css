@@ -1,0 +1,11 @@
+/* studentpage.component.css */
+
+.student-page-container{
+    display: flex;
+    
+}
+.main{
+    display: flex;
+    width: 50%;
+}
+  

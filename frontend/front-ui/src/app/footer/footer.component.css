@@ -1,0 +1,29 @@
+
+.footer-content {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content p {
+    margin: 0; /* Remove default margin for better alignment */
+  }
+  
+  div{
+    
+    margin-bottom: 1px;
+    bottom: 0px;
+    
+  }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  

@@ -1,0 +1,8 @@
+<div class="card-container">
+    <div *ngFor="let contentItem of contentData" class="card" (click)="navigateToStudents()">
+      <div class="card-content">
+        <img [src]="contentItem.icon" alt="{{ contentItem.name }} Icon" />
+        <h2>{{ contentItem.name }}</h2>
+      </div>
+    </div>
+</div>

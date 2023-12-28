@@ -1,0 +1,45 @@
+/* src/app/pages/home/home.component.css */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  flex: 0 1 calc(25% - 10px);
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-content h2 {
+  font-size: 1.2em;
+  margin-top: 10px; /* Increase margin for better visibility */
+}
+
+.card-content img {
+  width: 100%; /* Make the image fill the entire card */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card:hover{
+  /* z-index: 1; */
+  background-color: rgb(150, 222, 251);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+  opacity: 0.9;
+  border: 1px solid rgb(183, 237, 255)
+}
+
