@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose=require('mongoose');
+const multer = require('multer');
 // app.js
 
 const cors = require('cors');
@@ -130,6 +131,9 @@ var usersRouter = require('./routes/users');
 var homeRouter = require('./routes/home');
 var StudentListRouter = require('./routes/StudentList');
 var StudentPageRouter= require('./routes/StudentPage')
+var TeacherFormRouter = require('./routes/teacherform');
+var TeacherListRouter = require('./routes/teacherlist');
+; 
 
 
 
@@ -167,8 +171,52 @@ app.use('/users', usersRouter);
 app.use('/home', homeRouter);
 app.use("/Students/form",StudentListRouter);
 app.use('/Students/list',StudentPageRouter)
+app.use("/Teachers/form", TeacherFormRouter);
+app.use("/Teachers/list",TeacherListRouter);
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'images/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
 
+const upload = multer({ storage: storage });
+
+app.post('/upload-image', upload.single('image'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // You can access the uploaded file details using req.file
+    console.log('File uploaded successfully:', req.file);
+
+    // Add your logic for processing the uploaded file and save its path to the database
+
+    res.status(200).json({ message: 'File uploaded successfully' });
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.use(function (req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // status(500).send the error page
+  res.status(err.status || 500);
+  res.status(500).send('error');
+});
 
 
 

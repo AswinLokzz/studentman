@@ -27,6 +27,12 @@ import { StudentsidebarComponent } from './pages/studentpage/studentsidebar/stud
 import { StudentformComponent } from './pages/studentpage/studentform/studentform.component';
 import { StudentlistComponent } from './pages/studentpage/studentlist/studentlist.component';
 import { StudentFormService } from './services/studentform.service';
+import { TeacherpageComponent } from './pages/teacherpage/teacherpage.component';
+import { TeacherlistComponent } from './pages/teacherpage/teacherlist/teacherlist.component';
+import { TeacherformComponent } from './pages/teacherpage/teacherform/teacherform.component';
+import { TeacherviewComponent } from './pages/teacherpage/teacherview/teacherview.component';
+import { TeachersidebarComponent } from './pages/teacherpage/teachersidebar/teachersidebar.component';
+
 
 
 
@@ -40,6 +46,12 @@ import { StudentFormService } from './services/studentform.service';
     StudentsidebarComponent,
     StudentformComponent,
     StudentlistComponent,
+    TeacherlistComponent,
+    TeacherformComponent,
+    TeacherviewComponent,
+    TeachersidebarComponent,
+    TeacherpageComponent
+    
    
     
     

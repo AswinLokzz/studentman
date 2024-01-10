@@ -1,12 +1,11 @@
 <mat-card-content>
-  <form (submit)="onAddStudent(studentForm)" #studentForm="ngForm">
+  <form (submit)="onSubmit()" [formGroup]="studentForm">
   <div class="form-row">
     <mat-form-field>
       <mat-label>Full Name:</mat-label>
       
       <input matInput type="string"
-      name="Fullname"
-      ngModel
+      formControlName="Fullname"
       required="true"
       >
     </mat-form-field>
@@ -19,8 +18,7 @@
      
 
       <mat-select type="string"
-      name="Gender"
-      ngModel
+      formControlName="Gender"
       required="true">
         <mat-option value="Male">Male</mat-option>
         <mat-option value="Female">Female</mat-option>
@@ -34,8 +32,7 @@
       
 
       <mat-select type="string"
-      name="Year"
-      ngModel
+      formControlName="Year"
       required="true">
         <mat-option value="First">First</mat-option>
         <mat-option value="Second">Second</mat-option>
@@ -51,8 +48,7 @@
    
 
       <mat-select type="string"
-      name="Semester"
-      ngModel
+      formControlName="Semester"
       required="true">
         <mat-option value="S1">S1</mat-option>
         <mat-option value="S2">S2</mat-option>
@@ -72,8 +68,7 @@
      
 
       <mat-select type="string"
-      name="District"
-      ngModel
+      formControlName="District"
       required="true">
         <mat-option value="Kasargod">Kasargod</mat-option>
         <mat-option value="Malappuram">Malappuram</mat-option>
@@ -99,8 +94,7 @@
       <textarea 
       matInput
       type="string"
-      name="Address"
-      ngModel
+      formControlName="Address"
       required="true">
     </textarea>
     </mat-form-field>
@@ -111,15 +105,12 @@
       <mat-label>Enter your email</mat-label>
       <input
         type="string"
-        name="Email"
-
-      
         matInput
         placeholder="pat@example.com"
-        [formControl]="email"
+        formControlName="Email"
         required
       />
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <mat-error *ngIf="studentForm.get('Email')?.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
 
     <br>
@@ -129,8 +120,7 @@
 
       <input matInput
       type="string"
-      name="Username"
-      ngModel
+      formControlName="Username"
       required="true">
     </mat-form-field>
   </div>
@@ -140,8 +130,7 @@
       <mat-label>Enter your password</mat-label>
       <input matInput [type]="hide ? 'password' : 'text'" 
       type="string"
-      name="Password"
-      ngModel
+      formControlName="Password"
       required="true">
       <button
         mat-icon-button
@@ -155,14 +144,28 @@
 
 
 
+      <br />
+
     </mat-form-field>
   </div>
 
-  <button  mat-button class="submitbutton" type="submit">SUBMIT</button>
+  <div class="form-row">
+    <mat-label>Upload Image:</mat-label>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    
+      
+
+      
+     
+    </div>
+  <br />
+
+  
+
+
+  <button  mat-button class="submitbutton" type="submit" (click)="onSubmit()">SUBMIT</button>
 </form>
 </mat-card-content>
-<!-- <button mat-stroked-button type="button"(click)="filepicker.click()">  
-  Pick Image  
-</button>  
-<input type="file" #filepicker (change) = "onFileSelected($event)">   -->
+
+
 

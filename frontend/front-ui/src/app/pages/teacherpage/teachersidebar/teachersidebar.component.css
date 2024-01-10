@@ -1,0 +1,57 @@
+.sidebar-card {
+    margin-bottom: 16px; /* Adjust spacing as needed */
+    height: 85vh;
+    width: 100%;
+    margin-bottom: 0px;
+    margin-top: 40px;
+  }
+  
+  /* .active-link {
+    background-color: rgb(150, 222, 251);
+  } */
+  
+  /* Add any other styling as needed */
+  
+  a{
+    text-decoration: none;
+    color:black
+  
+  }
+  
+  mat-card-header {
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding: 20px;
+    /* margin: auto; */
+    font-weight: bolder;
+    font-size: larger;
+    letter-spacing: 0.5cap;
+  
+  }
+  
+  button{
+    background-color: aliceblue;
+    color: black;
+    margin: auto;
+    padding: 10px;
+  }
+  
+  mat-card-content{
+    margin: auto;
+    font-size: large;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  mat-icon{
+    font-size: 30px;
+    size: 30px;
+  }
+  span{
+    font-size: 30px;
+    size: 30px;
+  }

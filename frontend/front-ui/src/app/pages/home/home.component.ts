@@ -13,26 +13,31 @@ import { HomeContentService } from 'src/app/services/homeContent.service';
 export class HomeComponent implements OnInit {
   public contentData: homeContentModel[] = [];
 
-  constructor(private contentService: HomeContentService, private router:Router) {}
+  constructor(private contentService: HomeContentService, private router: Router) {}
 
   ngOnInit(): void {
     this.contentService.getContentData().subscribe({
-      next:      (data:homeContentModel[]) => {
-
-        this.contentData = data ;
+      next: (data: homeContentModel[]) => {
+        this.contentData = data;
       },
-      error:  (error) => {
+      error: (error) => {
         console.error('Error fetching content data:', error);
-      }
+      },
+    });
+  }
+
+  navigateToPage(pageName: string) {
+    switch (pageName) {
+      case 'Students':
+        this.router.navigate(['/Students']);
+        break;
+      case 'Teachers':
+        this.router.navigate(['/Teachers']);
+        break;
+      // Add more cases for other pages if needed
+      default:
+        // Handle default case or do nothing
+        break;
     }
-
-    
-    );
   }
-
-  navigateToStudents(){
-    this.router.navigate(['/Students']);
-  }
-
-  
 }

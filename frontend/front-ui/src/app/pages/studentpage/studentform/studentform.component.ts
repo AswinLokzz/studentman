@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
-import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {NgForm} from "@angular/forms"
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentFormService } from 'src/app/services/studentform.service';
 
 @Component({
@@ -10,74 +7,89 @@ import { StudentFormService } from 'src/app/services/studentform.service';
   templateUrl: './studentform.component.html',
   styleUrls: ['./studentform.component.css']
 })
-export class StudentformComponent {
+export class StudentformComponent implements OnInit {
+  studentForm!: FormGroup;
+  hide = true;
+  submitting = false;
+  selectedFile!: File | null;
+  uploadProgress = 0;
+  imagePreview: string | ArrayBuffer | null = null;
+  
+  constructor(private fb: FormBuilder, public studentService: StudentFormService) {}
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  mailID:string =''
-  fileInput: any;
-
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  ngOnInit(): void {
+    this.initForm();
   }
 
-  hide = true;
+  initForm(): void {
+    this.studentForm = this.fb.group({
+      Fullname: ['', Validators.required],
+      Gender: ['', Validators.required],
+      Year: ['', Validators.required],
+      Semester: ['', Validators.required],
+      District: ['', Validators.required],
+      Address: ['', Validators.required],
+      Email: ['', [Validators.required, Validators.email]],
+      Username: ['', Validators.required],
+      Password: ['', Validators.required],
+      Image: [null, Validators.required],
+    });
 
- 
-  
-  // selectedImage: File | null = null;
-  // pickImage() {
-  //   if (this.fileInput) {
-  //     this.fileInput.nativeElement.click();
-  //   }
-  // }
+  }
 
-  // onFileSelected(event: Event): void {
-  //   const fileInput = (event.target as HTMLInputElement).files;
-  
-  //   if (fileInput && fileInput.files && fileInput.files.length > 0) {
-  //     this.selectedImage = fileInput.files[0];
-  //   } else {
-  //     this.selectedImage = null;
-  //   }
-  // }
-
-  // getSelectedImageName(): string {
-  //   return this.selectedImage ? this.selectedImage.name : 'No image selected';
-  // }
- 
-  constructor(public StudentService:StudentFormService){}
-
-  newPost = 'This is a Post';  
-    onAddStudent(form:NgForm){
-      if(form.invalid){
-        return;
-      }
-      {
-        console.log("Form Value:",form.value)
-        console.log("Email:",this.email.value)
-
-        this.mailID = (this.email.value || '');
-
-        this.StudentService.addStudent(form.value.Fullname,
-          form.value.Gender,
-          form.value.Year,
-          form.value.Semester,
-          form.value.District,
-          form.value.Address,
-          this.mailID,
-          form.value.Username,
-          form.value.Password).subscribe({
-            next:data =>{
-              console.log(data)
-            }
-          })
-        }
-        
-        
-      }
-      
+  getErrorMessage(): string {
+    const emailControl = this.studentForm.get('Email')!;
+    if (emailControl.hasError('required')) {
+      return 'You must enter a value';
     }
+    return emailControl.hasError('email') ? 'Not a valid email' : '';
+  }
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+    console.log("selimage",this.selectedFile)
+    this.updateImagePreview();
+  }
+
+  updateImagePreview(): void {
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  onUploadProgress(event: any): void {
+    if (event.type === 'uploadProgress') {
+      this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+    }
+  }
+
+
+  onSubmit(): void {
+    if (this.submitting || this.studentForm.invalid) {
+      return;
+    }
+
+    this.submitting = true;
+    const imageFile = this.studentForm.get('Image')?.value;
+
+    this.studentService.addStudent(this.studentForm, imageFile).subscribe({
+      next: (data: any) => {
+        console.log('Data from service:', data);
+        console.log('Form Values:', this.studentForm.value);
+        
+        this.submitting = false;
+      },
+      error: (error) => {
+        console.error('Error from service:', error);
+        this.submitting = false;
+      },
+    });
+  }
+
+
+ 
+
+}
