@@ -13,8 +13,8 @@ export class TeachersidebarComponent {
 
   navigateToTeachersList(){
     this.router.navigate(['/Teachers/list']);
-    this.service.setshow()
-    console.log(this.service.getshow())
+    // this.service.setshow()
+    // console.log(this.service.getshow())
   }
 
   navigateToAddTeacher(){

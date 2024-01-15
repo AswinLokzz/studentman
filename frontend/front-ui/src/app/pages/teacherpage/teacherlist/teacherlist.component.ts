@@ -23,15 +23,19 @@ export class TeacherlistComponent implements OnInit {
     })
   }
 
-  view(id:any){
-    this.service.setshow()
-    this.show=this.service.getshow()
-    console.log(  this.show)
+  // view(id:any){
+  //   this.service.setshow()
+  //   this.show=this.service.getshow()
+  //   console.log(  this.show)
  
    
-    this.service.setId(id)
-  }
+  //   this.service.setId(id)
+  // }
 
+  navigateToView(_id:any){
+    console.log('Navigating to view with ID:', _id);
+    this.router.navigate(['/Teacher/view',_id])
+  }
   
   
 

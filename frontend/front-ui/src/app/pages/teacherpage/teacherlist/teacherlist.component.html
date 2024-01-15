@@ -1,5 +1,5 @@
 
-<div class="container py-5 ms-5 " id="divmain" *ngIf="(teacher.length>0) && (show==true)">
+<div class="container py-5 ms-5 " id="divmain" *ngIf="(teacher.length>0)">
     <div class="row">
         <div class="col-lg-7 mx-auto bg-white rounded shadow">
 
@@ -19,7 +19,7 @@
                             <th scope="row" class="col-3">{{i+1}}</th>
                             <td class="col-3">{{item.Fullname}}</td>
                             <td class="col-3">{{item.Department}}</td>
-                            <td class="col-3"><button (click)="view(item._id)">View</button></td>
+                            <td class="col-3"><button [routerLink]="['/Teachers/view', item._id]">View</button></td>
                         </tr>
                         
 
@@ -31,6 +31,6 @@
     </div>
 </div>
 <p class = " info-text mat-body-1" *ngIf = "teacher.length <= 0">No post added yet!</p>
-<ng-container *ngIf="!show" >
+<!-- <ng-container >
 <app-teacherview></app-teacherview>
-</ng-container>
+</ng-container> -->

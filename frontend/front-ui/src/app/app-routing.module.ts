@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { StudentpageComponent } from './pages/studentpage/studentpage.component';
@@ -25,8 +25,9 @@ const routes: Routes = [
     component: TeacherpageComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'list', component: TeacherlistComponent },
+      { path: 'list', component: TeacherlistComponent},
       { path: 'form', component: TeacherformComponent },
+      {path:'view/:_id',component:TeacherviewComponent},
     ],
   },
 ];

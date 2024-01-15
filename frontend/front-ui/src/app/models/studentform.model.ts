@@ -8,5 +8,4 @@ export interface StudentForm{
     Email:string;
     Username:string;
     Password:string;
-    ImagePath?: string;
 }

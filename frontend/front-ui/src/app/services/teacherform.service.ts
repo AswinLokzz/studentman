@@ -148,13 +148,13 @@ export class TeacherFormService {
     return this.id
   }
 
-  setshow(){
-    this.show=!this.show
-  }
+  // setshow(){
+  //   this.show=!this.show
+  // }
 
-  getshow(){
-    return this.show
-  }
+  // getshow(){
+  //   return this.show
+  // }
 
   // getFormsUpdatedListener() {
   //   return this.StudentFormsUpdated.asObservable();
