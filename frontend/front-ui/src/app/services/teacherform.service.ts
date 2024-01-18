@@ -148,6 +148,11 @@ export class TeacherFormService {
     return this.id
   }
 
+  // updateTeacher(teacherForm: FormGroup): Observable<any> {
+  //   return this.http.put(`${this.apiUrl}/Teachers/form/${this._id}`, teacherForm.value);
+  // }
+  }
+
   // setshow(){
   //   this.show=!this.show
   // }
@@ -160,4 +165,4 @@ export class TeacherFormService {
   //   return this.StudentFormsUpdated.asObservable();
   // }
 
-}
+

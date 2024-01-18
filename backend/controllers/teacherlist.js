@@ -14,7 +14,33 @@ const getTeacherDataList = async (req, res) => {
       console.error('Error fetching homepage data:', error.message);
       res.status(500).send('Internal Server Error');
     }
-  };
 
-  module.exports={
-    getTeacherDataList}
+    
+    const updateTeacherData = async (req, res) => {
+      const teacherId = req.params.id;
+      const updatedData = req.body;
+    
+      try {
+        const updatedTeacher = await TeacherDataList.findByIdAndUpdate(
+          teacherId,
+          updatedData,
+          { new: true }
+        );
+    
+        if (!updatedTeacher) {
+          return res.status(404).json({ message: "Teacher not found" });
+        }
+    
+        res.status(200).json({ message: "Teacher updated successfully", updatedTeacher });
+      } catch (error) {
+        console.error('Error updating teacher data:', error.message);
+        res.status(500).send('Internal Server Error');
+      }
+    };
+    
+    module.exports = {
+      getTeacherDataList,
+      updateTeacherData
+    };
+
+}

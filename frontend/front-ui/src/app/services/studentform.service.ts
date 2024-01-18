@@ -11,6 +11,8 @@ export class StudentFormService {
   private StudentForms: StudentForm[] = [];
   private StudentFormsUpdated = new Subject<StudentForm[]>();
 
+  id:any
+
   constructor(private http: HttpClient) {}
 
   getStudentForm() {
@@ -41,5 +43,13 @@ export class StudentFormService {
 
   getFormsUpdatedListener() {
     return this.StudentFormsUpdated.asObservable();
+  }
+
+  setId(id:any){
+    this.id=id
+  }
+
+  getId(){
+    return this.id
   }
 }

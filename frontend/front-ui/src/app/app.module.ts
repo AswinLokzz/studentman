@@ -12,6 +12,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
 import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -27,11 +29,19 @@ import { StudentsidebarComponent } from './pages/studentpage/studentsidebar/stud
 import { StudentformComponent } from './pages/studentpage/studentform/studentform.component';
 import { StudentlistComponent } from './pages/studentpage/studentlist/studentlist.component';
 import { StudentFormService } from './services/studentform.service';
+import { StudentviewComponent } from './pages/studentpage/studentview/studentview.component';
 import { TeacherpageComponent } from './pages/teacherpage/teacherpage.component';
 import { TeacherlistComponent } from './pages/teacherpage/teacherlist/teacherlist.component';
 import { TeacherformComponent } from './pages/teacherpage/teacherform/teacherform.component';
 import { TeacherviewComponent } from './pages/teacherpage/teacherview/teacherview.component';
 import { TeachersidebarComponent } from './pages/teacherpage/teachersidebar/teachersidebar.component';
+import { FeesComponent } from './pages/fees/fees.component';
+import { FeesidebarComponent } from './pages/fees/feesidebar/feesidebar.component';
+import { FeeformComponent } from './pages/fees/feeform/feeform.component';
+import { FeefilterComponent } from './pages/fees/feefilter/feefilter.component';
+import { FeeassignerComponent } from './pages/fees/feeassigner/feeassigner.component';
+import { FeelistComponent } from './pages/fees/feelist/feelist.component';
+import { FeestudentComponent } from './pages/fees/feestudent/feestudent.component';
 
 
 
@@ -50,7 +60,7 @@ import { TeachersidebarComponent } from './pages/teacherpage/teachersidebar/teac
     TeacherformComponent,
     TeacherviewComponent,
     TeachersidebarComponent,
-    TeacherpageComponent
+    TeacherpageComponent,StudentviewComponent, FeesComponent, FeesidebarComponent, FeeformComponent, FeefilterComponent, FeeassignerComponent, FeelistComponent, FeestudentComponent
     
    
     
@@ -74,6 +84,8 @@ import { TeachersidebarComponent } from './pages/teacherpage/teachersidebar/teac
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatRadioModule
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherFormService } from 'src/app/services/teacherform.service';
 import { teacherform } from 'src/app/models/teacherform.model';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -99,6 +99,8 @@ export class TeacherformComponent implements OnInit {
     console.log(this.teacherform.value as teacherform);
     this.teacherform.value['image']=this.selectedFile?.name
     this.teacherFormService.addTeacher(this.teacherform);
+    this.teacherform.reset();
+    
   }
 
 }

@@ -4,6 +4,7 @@ const StudentListItemSchema = new mongoose.Schema({
     Fullname:String,
     Gender:String,
     Year:String,
+    Department: String,
     Semester:String,
     District:String,
     Address:String,

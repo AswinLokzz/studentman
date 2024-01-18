@@ -8,6 +8,10 @@ import { TeacherpageComponent } from './pages/teacherpage/teacherpage.component'
 import { TeacherformComponent } from './pages/teacherpage/teacherform/teacherform.component';
 import { TeacherlistComponent } from './pages/teacherpage/teacherlist/teacherlist.component';
 import { TeacherviewComponent } from './pages/teacherpage/teacherview/teacherview.component';
+import { StudentviewComponent } from './pages/studentpage/studentview/studentview.component';
+import { FeesComponent } from './pages/fees/fees.component';
+import { FeelistComponent } from './pages/fees/feelist/feelist.component';
+import { FeeassignerComponent } from './pages/fees/feeassigner/feeassigner.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +22,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: StudentlistComponent },
       { path: 'form', component: StudentformComponent },
+      {path:'view/:_id',component:StudentviewComponent}
     ],
   },
   {
@@ -30,6 +35,16 @@ const routes: Routes = [
       {path:'view/:_id',component:TeacherviewComponent},
     ],
   },
+  {
+    path:'Fees',
+    component:FeesComponent,
+    children:[
+      {path:'', redirectTo:'due',pathMatch:'full'},
+      {path:'due',component:FeelistComponent},
+      {path:'assign', component:FeeassignerComponent}
+      
+    ]
+  }
 ];
 
 @NgModule({

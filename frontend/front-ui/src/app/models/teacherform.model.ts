@@ -8,5 +8,5 @@ export interface teacherform{
     subject:string
     Username:String
     Password:String
-    
+    // Image:string
 }

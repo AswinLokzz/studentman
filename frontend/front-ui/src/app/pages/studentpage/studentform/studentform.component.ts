@@ -25,6 +25,7 @@ export class StudentformComponent implements OnInit {
     this.studentForm = this.fb.group({
       Fullname: ['', Validators.required],
       Gender: ['', Validators.required],
+      Department:['',Validators.required],
       Year: ['', Validators.required],
       Semester: ['', Validators.required],
       District: ['', Validators.required],
@@ -55,7 +56,7 @@ export class StudentformComponent implements OnInit {
     }
 
     this.submitting = true;
-
+    console.log("form", this.studentForm)
     this.studentService.addStudent(this.studentForm).subscribe({
       next: (data: any) => {
         console.log('Data from service:', data);

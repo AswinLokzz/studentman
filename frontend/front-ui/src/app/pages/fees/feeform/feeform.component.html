@@ -1,0 +1,30 @@
+<mat-card-content>
+    <form>
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Fee Type:</mat-label>
+                <mat-select formControlName="FeeType" required>
+                    <mat-option value="SemFee">SemFee</mat-option>
+                    <mat-option value="BusFee">BusFee</mat-option>
+                    <mat-option value="MessFee">MessFee</mat-option>
+                    <mat-option value="Fine">Fine</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Amount:</mat-label>
+                <input matInput type="text" formControlName="Amount" required>
+            </mat-form-field>
+        </div>
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Description:</mat-label>
+                <input matInput type="text" formControlName="Description">
+            </mat-form-field>
+        </div>
+        <div class="form-row">
+            <button mat-button class="submitbutton" type="submit">SUBMIT</button>
+        </div>
+    </form>
+</mat-card-content>

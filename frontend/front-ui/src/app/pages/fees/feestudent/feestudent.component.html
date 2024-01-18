@@ -1,0 +1,40 @@
+
+<div class="container py-5 ms-5 " id="divmain" *ngIf="(student.length>0)">
+  <div class="row">
+      <div class="col-lg-7 mx-auto bg-white rounded shadow">
+
+          <!-- Fixed header table-->
+          <div class="table-responsive">
+              <table class="table table-fixed">
+                  <thead>
+                      <tr>
+                          <th scope="col" class="col-3">SN</th>
+                          <th scope="col" class="col-3">Name</th>
+                          <th scope="col" class="col-3">Department</th>
+                          <th scope="col" class="col-3">Year</th>
+                          <th scope="col" class="col-3">select All<input type="checkbox"></th>
+                          <th scope="col" class="col-3">View</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of student, let i=index">
+                          <th scope="row" class="col-3">{{i+1}}</th>
+                          <td class="col-3">{{item.Fullname}}</td>
+                          <td class="col-3">{{item.Department}}</td>
+                          <td class="col-3">{{item.Year}}</td>
+                          <td class="col-3"><input type="checkbox"></td>
+                          <td class="col-3"><button >Assign</button></td>
+                      </tr>
+                      
+
+                  </tbody>
+              </table>
+          </div><!-- End -->
+          
+      </div>
+  </div>
+</div>
+<p class = " info-text mat-body-1" *ngIf = "student.length <= 0">No post added yet!</p>
+<!-- <ng-container >
+<app-teacherview></app-teacherview>
+</ng-container> -->

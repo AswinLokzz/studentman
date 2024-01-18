@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';  // Import ActivatedRoute and Params
+import { ActivatedRoute, ParamMap, Params } from '@angular/router';  // Import ActivatedRoute and Params
+import { teacherform } from 'src/app/models/teacherform.model';
 
 @Component({
   selector: 'app-teacherview',
@@ -10,15 +11,16 @@ import { ActivatedRoute, Params } from '@angular/router';  // Import ActivatedRo
 export class TeacherviewComponent implements OnInit {
   id: any;
   details: any;
-  username!: string;
-  Fullname!: string;
-  Department!: string;
-  Year!: string;
-  Semester!: string;
-  Email!: string;
-  Password!: string;
-  Subject!: string;
-  Image!: string;
+  teacherform!: teacherform;
+  username: any;
+  Fullname: any;
+  Department: any;
+  Year: any;
+  Semester: any;
+  Subject: any;
+  Email: any;
+  Password: any;
+  Image: any;
 
   constructor(
     private http: HttpClient,
@@ -26,8 +28,8 @@ export class TeacherviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['_id'];
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      this.id = paramMap.get('_id');
       console.log('ID from route parameters:', this.id);
       this.getData();
     });
@@ -58,5 +60,29 @@ export class TeacherviewComponent implements OnInit {
           console.log('error', err.error.message);
         }
       });
+  }
+
+  isEditable:boolean=true;
+
+  toggleEdit(){
+    this.isEditable=!this.isEditable;
+
+    const data={
+      id:this.id,
+      name:this.username,
+      fname:this.Fullname,
+      department:this.Department,
+      year:this.Year,
+      semester:this.Semester,
+      subject: this.Subject,
+      email:this.Email,
+      password:this.Password,
+      image:this.Image
+    }
+    this.http.post('http://localhost:3000/Teachers/form/update',data).subscribe({
+      next: (res: any) => {console.log("update successfull")
+    this.getData()},error:(err:any)=>{
+        console.log(err)
+  }})
   }
 }

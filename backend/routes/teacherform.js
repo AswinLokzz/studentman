@@ -9,4 +9,6 @@ router.post('/', TeacherFormController.postTeacherDetails);
 
 router.post('/getData' ,TeacherFormController.getDetails )
 
+router.post('/update',TeacherFormController.updateTeacherData)
+
 module.exports = router;
