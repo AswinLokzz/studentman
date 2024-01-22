@@ -12,6 +12,7 @@ import { StudentviewComponent } from './pages/studentpage/studentview/studentvie
 import { FeesComponent } from './pages/fees/fees.component';
 import { FeelistComponent } from './pages/fees/feelist/feelist.component';
 import { FeeassignerComponent } from './pages/fees/feeassigner/feeassigner.component';
+import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,10 +40,16 @@ const routes: Routes = [
     path:'Fees',
     component:FeesComponent,
     children:[
-      {path:'', redirectTo:'due',pathMatch:'full'},
-      {path:'due',component:FeelistComponent},
-      {path:'assign', component:FeeassignerComponent}
+      {path:'', redirectTo:'assign',pathMatch:'full'},
+      {path:'assign', component:FeeassignerComponent},
+      {path:'due',component:FeelistComponent}
       
+    ]
+  },
+  {
+    path:'login', component:LoginpageComponent,
+    children:[
+      {path:'home',component:HomeComponent}
     ]
   }
 ];

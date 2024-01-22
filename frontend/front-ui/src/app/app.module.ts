@@ -14,6 +14,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -42,6 +44,7 @@ import { FeefilterComponent } from './pages/fees/feefilter/feefilter.component';
 import { FeeassignerComponent } from './pages/fees/feeassigner/feeassigner.component';
 import { FeelistComponent } from './pages/fees/feelist/feelist.component';
 import { FeestudentComponent } from './pages/fees/feestudent/feestudent.component';
+import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 
 
 
@@ -60,7 +63,7 @@ import { FeestudentComponent } from './pages/fees/feestudent/feestudent.componen
     TeacherformComponent,
     TeacherviewComponent,
     TeachersidebarComponent,
-    TeacherpageComponent,StudentviewComponent, FeesComponent, FeesidebarComponent, FeeformComponent, FeefilterComponent, FeeassignerComponent, FeelistComponent, FeestudentComponent
+    TeacherpageComponent,StudentviewComponent, FeesComponent, FeesidebarComponent, FeeformComponent, FeefilterComponent, FeeassignerComponent, FeelistComponent, FeestudentComponent, LoginpageComponent
     
    
     
@@ -85,7 +88,9 @@ import { FeestudentComponent } from './pages/fees/feestudent/feestudent.componen
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatExpansionModule,
+    MatCheckboxModule
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

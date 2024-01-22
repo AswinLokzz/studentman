@@ -133,6 +133,7 @@ var StudentListRouter = require('./routes/StudentList');
 var StudentPageRouter= require('./routes/StudentPage')
 var TeacherFormRouter = require('./routes/teacherform');
 var TeacherListRouter = require('./routes/teacherlist');
+var loginrouter=require('./routes/login');
 
 
 
@@ -172,6 +173,8 @@ app.use("/Students/form",StudentListRouter);
 app.use('/Students/list',StudentPageRouter)
 app.use("/Teachers/form", TeacherFormRouter);
 app.use("/Teachers/list",TeacherListRouter);
+app.use("/login",loginrouter);
+
 
 
 

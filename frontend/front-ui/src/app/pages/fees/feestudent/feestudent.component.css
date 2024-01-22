@@ -1,4 +1,4 @@
-#divmain{
+/* #divmain{
     position: relative;
     margin-left: 50px;
     width: 1900px;
@@ -7,4 +7,10 @@
   #ms{
       position: relative;
   
-  margin-left: 400px;}
+  margin-left: 400px;} */
+
+  table{
+    width: 1200px;
+    align-items: center;
+    justify-content: center;
+  }
