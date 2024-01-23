@@ -38,13 +38,7 @@ const routes: Routes = [
   },
   {
     path:'Fees',
-    component:FeesComponent,
-    children:[
-      {path:'', redirectTo:'assign',pathMatch:'full'},
-      {path:'assign', component:FeeassignerComponent},
-      {path:'due',component:FeelistComponent}
-      
-    ]
+    component:FeesComponent
   },
   {
     path:'login', component:LoginpageComponent,

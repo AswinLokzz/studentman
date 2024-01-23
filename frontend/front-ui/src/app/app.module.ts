@@ -16,10 +16,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
+
 import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +33,6 @@ import { StudentpageComponent } from './pages/studentpage/studentpage.component'
 import { StudentsidebarComponent } from './pages/studentpage/studentsidebar/studentsidebar.component';
 import { StudentformComponent } from './pages/studentpage/studentform/studentform.component';
 import { StudentlistComponent } from './pages/studentpage/studentlist/studentlist.component';
-import { StudentFormService } from './services/studentform.service';
 import { StudentviewComponent } from './pages/studentpage/studentview/studentview.component';
 import { TeacherpageComponent } from './pages/teacherpage/teacherpage.component';
 import { TeacherlistComponent } from './pages/teacherpage/teacherlist/teacherlist.component';
@@ -63,7 +65,16 @@ import { LoginpageComponent } from './pages/loginpage/loginpage.component';
     TeacherformComponent,
     TeacherviewComponent,
     TeachersidebarComponent,
-    TeacherpageComponent,StudentviewComponent, FeesComponent, FeesidebarComponent, FeeformComponent, FeefilterComponent, FeeassignerComponent, FeelistComponent, FeestudentComponent, LoginpageComponent
+    TeacherpageComponent,
+    StudentviewComponent,
+    FeesComponent, 
+    FeesidebarComponent, 
+    FeeformComponent, 
+    FeefilterComponent, 
+    FeeassignerComponent, 
+    FeelistComponent, 
+    FeestudentComponent, 
+    LoginpageComponent
     
    
     
@@ -90,7 +101,10 @@ import { LoginpageComponent } from './pages/loginpage/loginpage.component';
     MatProgressSpinnerModule,
     MatRadioModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatDialogModule,
+   
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

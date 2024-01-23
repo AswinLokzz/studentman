@@ -10,12 +10,6 @@ export class FeesidebarComponent {
 
   constructor(private router:Router){}
 
-  navigateToList(){
-    this.router.navigate(['/Fees/due'])
-  }
-
-  navigateToassign(){
-    this.router.navigate(['/Fees/assign'])
-  }
+ 
 
 }
