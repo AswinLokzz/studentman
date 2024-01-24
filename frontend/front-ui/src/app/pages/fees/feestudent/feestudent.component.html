@@ -18,6 +18,24 @@
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
       <div class="example-element-detail" [@detailExpand]="element == expandendData ? 'expanded' : 'collapsed'">
+        <table >
+          <tr>
+            <th>Fee Type</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>status</th>
+          </tr >
+          <tr *ngFor="let details of feelist">
+            <ng-container *ngIf="element._id==details.studentid" >
+
+              <td>{{details.FeeType}}</td>    
+              <td>{{details.Amount}}</td>
+              <td>{{details.Description}}</td>
+              <td>Unpaid</td>
+            </ng-container>
+          </tr>
+        </table>
+
         
         <button mat-raised-button color="primary" (click)="popUp(element._id)">Assign</button>
 

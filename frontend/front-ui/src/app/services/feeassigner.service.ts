@@ -14,12 +14,15 @@ export class feeassigner{
     
     constructor(private http:HttpClient){}
     id!:string
+    name!:string
    setId(id:string){
         this.id=id
+        
     }
 
     getId(){
         return this.id
+    
     }
 
     getFeeDueList(){
@@ -36,6 +39,11 @@ export class feeassigner{
         }
     })
     }
+
+    getFeeData(){
+        return this.http.get('http://localhost:3000/Fees/form');
+    }
+
 }
 
 // addFee(FeeformComponent: FormGroup){

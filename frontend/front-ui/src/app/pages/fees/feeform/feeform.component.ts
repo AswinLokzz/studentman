@@ -9,6 +9,7 @@ import { feeassigner } from 'src/app/services/feeassigner.service';
 })
 export class FeeformComponent implements OnInit {
   feeForm!: FormGroup;
+  feelist=[]
 
   constructor(private formBuilder: FormBuilder, public feeAssigner:feeassigner) {}
 
@@ -19,6 +20,7 @@ export class FeeformComponent implements OnInit {
       Description: [''],
     });
     console.log(this.feeAssigner.getId())
+   
   }
 
   onSubmit() {

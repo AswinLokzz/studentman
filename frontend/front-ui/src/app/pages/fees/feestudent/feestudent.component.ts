@@ -28,7 +28,8 @@ export class FeestudentComponent implements OnInit{
   columnsToDisplay = ['SNo','Fullname', 'Department', 'Year'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandendData!:feedetails|null
-  
+  feelist:any[]=[]
+  id:any[]=[]
 
   constructor(private service: StudentFormService, private dialog:MatDialog, private feeAssigner:feeassigner) {}
   ;
@@ -43,15 +44,31 @@ export class FeestudentComponent implements OnInit{
 
         this.dataSource = new MatTableDataSource(this.students);
         console.log('got it', this.students);
+
       },
+      
     });
+    this.toggleExpand()
   }
 
 
-  toggleExpand(element: any): void {
-    this.expandendData = this.expandendData === element ? null : element;
+  toggleExpand() {
+    // this.expandendData = this.expandendData === element ? null : element;
+    this.feeAssigner.getFeeData().subscribe({
+      next:(res:any)=>{
+        this.feelist=res
+        this.feelist.forEach((item:any)=>{
+           this.id.push(item.studentid)
+        })
+     
+        console.log("feelist",this.feelist)
+      }
+    })
   }
 
+ 
+  
+  
   popUp(id:any){
     this.feeAssigner.setId(id)
     const dialogRef = this.dialog.open(FeeformComponent, {

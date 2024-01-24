@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 
 const feeDetailsItem= new mongoose.Schema({
-    _id:String,
-    Fullname:String,
+    studentid:String,
     FeeType:String,
     Amount:String,
     Description:String
