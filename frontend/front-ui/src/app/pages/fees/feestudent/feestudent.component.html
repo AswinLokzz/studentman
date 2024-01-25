@@ -1,12 +1,12 @@
 <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
   <ng-container *ngFor="let column of columnsToDisplay; let i = index" [matColumnDef]="column">
     <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
-    <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    <td mat-cell *matCellDef="let element" (click)="passing(element._id)"> {{ element[column] }} </td>
   </ng-container>
 
-  <ng-container matColumnDef="expand">
-    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-    <td mat-cell *matCellDef="let element">
+  <ng-container matColumnDef="expand" >
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions" >&nbsp;</th>
+    <td mat-cell *matCellDef="let element" >
       <!-- <button mat-icon-button aria-label="expand row" (click)="toggleExpand(element); $event.stopPropagation()">
         <mat-icon *ngIf="expandendData === element">keyboard_arrow_up</mat-icon>
         <mat-icon *ngIf="expandendData !== element">keyboard_arrow_down</mat-icon>
@@ -15,10 +15,10 @@
   </ng-container>
 
   <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-      <div class="example-element-detail" [@detailExpand]="element == expandendData ? 'expanded' : 'collapsed'">
-        <table >
+  <ng-container matColumnDef="expandedDetail" >
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length" >
+      <div class="example-element-detail" [@detailExpand]="element == expandendData ? 'expanded' : 'collapsed'" >
+        <table *ngIf="id.includes(element._id)" >
           <tr>
             <th>Fee Type</th>
             <th>Amount</th>
@@ -38,7 +38,10 @@
 
         
         <button mat-raised-button color="primary" (click)="popUp(element._id)">Assign</button>
-
+        
+        <div *ngIf="show.includes(element._id)">
+          <p>No fee assigned</p>
+        </div>
       </div>
     </td>
   </ng-container>

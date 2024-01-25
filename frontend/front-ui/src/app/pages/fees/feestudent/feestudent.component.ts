@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck, ChangeDetectorRef, SimpleChanges } from '@angular/core';
 import { StudentFormService } from 'src/app/services/studentform.service';
 import { feedetails } from 'src/app/models/feestudent.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,6 +6,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { FeeformComponent } from '../feeform/feeform.component';
 import { MatDialog } from '@angular/material/dialog';
 import { feeassigner } from 'src/app/services/feeassigner.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'feestudent',
@@ -19,7 +20,7 @@ import { feeassigner } from 'src/app/services/feeassigner.service';
     ]),
   ],
 })
-export class FeestudentComponent implements OnInit{
+export class FeestudentComponent implements OnInit {
 
   students: feedetails[] = [];
   dataSource:MatTableDataSource<feedetails> = new MatTableDataSource()
@@ -30,10 +31,29 @@ export class FeestudentComponent implements OnInit{
   expandendData!:feedetails|null
   feelist:any[]=[]
   id:any[]=[]
-
-  constructor(private service: StudentFormService, private dialog:MatDialog, private feeAssigner:feeassigner) {}
+  idnew!:string
+  show:any[]=[]
+  private feeAssignerSubscription!: Subscription;
+  constructor(private service: StudentFormService, private dialog:MatDialog, private feeAssigner:feeassigner, private cdref: ChangeDetectorRef) {}
   ;
   ngOnInit(): void {
+    this.feeAssignerSubscription = this.feeAssigner.onSubmit$.subscribe(() => {
+      this.updateStudentList();
+    });
+
+    this.toggleExpand();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getStudentList()
+  }
+
+  updateStudentList() {
+    this.getStudentList();
+    // Manually trigger change detection
+    this.cdref.detectChanges();
+  }
+
+  getStudentList(){
     this.service.getStudentForm().subscribe({
       next: (res: any) => {
         // Assign serial numbers to each student
@@ -48,8 +68,18 @@ export class FeestudentComponent implements OnInit{
       },
       
     });
-    this.toggleExpand()
   }
+
+   passing(id:any){
+    console.log("it works")
+    this.idnew=id
+    console.log(this.id)
+    if(!this.id.includes(this.idnew)){
+      this.show.push(this.idnew)
+    }
+   }
+
+   
 
 
   toggleExpand() {
@@ -60,6 +90,8 @@ export class FeestudentComponent implements OnInit{
         this.feelist.forEach((item:any)=>{
            this.id.push(item.studentid)
         })
+        this.getStudentList()
+
      
         console.log("feelist",this.feelist)
       }
@@ -73,12 +105,24 @@ export class FeestudentComponent implements OnInit{
     this.feeAssigner.setId(id)
     const dialogRef = this.dialog.open(FeeformComponent, {
       width: '400px', // Set the width of your popup
+      disableClose:true,
       data: { /* You can pass data to your popup component if needed */ }
     });
   
     // Handle the result from the popup if necessary
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The popup was closed with result:', result);
+      this.feeAssigner.getFeeData().subscribe({
+        next:(res:any)=>{
+          this.feelist=res
+          this.feelist.forEach((item:any)=>{
+             this.id.push(item.studentid)
+          })
+          this.getStudentList()
+  
+       
+          console.log("feelist",this.feelist)
+        }
+      })
     });
   }
   

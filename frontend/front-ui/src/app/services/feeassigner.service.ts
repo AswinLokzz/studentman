@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, throwError, Observable } from 'rxjs';
+import { Subject, throwError, Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
@@ -15,6 +15,7 @@ export class feeassigner{
     constructor(private http:HttpClient){}
     id!:string
     name!:string
+    reveal:boolean=false
    setId(id:string){
         this.id=id
         
@@ -34,6 +35,7 @@ export class feeassigner{
     .subscribe({
         next:(res:any)=>{
             console.log(res)
+            this.reveal=!this.reveal
         },error:(err:any)=>{
             console.log("error ", err)
         }
@@ -43,6 +45,24 @@ export class feeassigner{
     getFeeData(){
         return this.http.get('http://localhost:3000/Fees/form');
     }
+
+    private onSubmitSubject = new BehaviorSubject<void>(null as unknown as void)
+
+  onSubmit() {
+    this.onSubmitSubject.next();
+  }
+
+  get onSubmit$() {
+    return this.onSubmitSubject.asObservable();
+  }
+
+//   setRefresh(){
+    
+//   }
+
+  getRefresh(){
+    return this.reveal
+  }
 
 }
 
