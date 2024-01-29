@@ -7,7 +7,7 @@ import { FeeformComponent } from '../feeform/feeform.component';
 import { MatDialog } from '@angular/material/dialog';
 import { feeassigner } from 'src/app/services/feeassigner.service';
 import { Subscription } from 'rxjs';
-
+import { SelectionModel } from '@angular/cdk/collections';
 @Component({
   selector: 'feestudent',
   templateUrl: './feestudent.component.html',
@@ -26,7 +26,8 @@ export class FeestudentComponent implements OnInit {
   dataSource:MatTableDataSource<feedetails> = new MatTableDataSource()
   index=0;
   panelOpenState = false;
-  columnsToDisplay = ['SNo','Fullname', 'Department', 'Year'];
+  columnsToDisplaywithoutselect = ['SNo','Fullname', 'Department', 'Year'];
+  columnsToDisplay = ['select','SNo','Fullname', 'Department', 'Year'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandendData!:feedetails|null
   feelist:any[]=[]
@@ -34,6 +35,9 @@ export class FeestudentComponent implements OnInit {
   idnew!:string
   show:any[]=[]
   private feeAssignerSubscription!: Subscription;
+  selection = new SelectionModel<feedetails>(true, []); // Main rows selection model
+  selectionDetails = new SelectionModel<feedetails>(true, []); // Details rows selection model
+
   constructor(private service: StudentFormService, private dialog:MatDialog, private feeAssigner:feeassigner, private cdref: ChangeDetectorRef) {}
   ;
   ngOnInit(): void {
@@ -125,6 +129,85 @@ export class FeestudentComponent implements OnInit {
       })
     });
   }
-  
 
+  isAssignToAllActive(): boolean {
+    return this.selection.selected.length > 1;
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  // Selects all main rows if they are not all selected; otherwise clear selection
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+  
+    this.selection.select(...this.dataSource.data);
+  }
+  
+  // The label for the checkbox on the passed main row
+  checkboxLabel(row?: feedetails): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.SNo}`;
+  }
+
+  // Whether the number of selected elements matches the total number of details rows
+  isAllDetailsSelected() {
+    const numSelected = this.selectionDetails.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  // Selects all details rows if they are not all selected; otherwise clear selection
+  toggleAllDetails() {
+    if (this.isAllDetailsSelected()) {
+      this.selectionDetails.clear();
+      return;
+    }
+
+    this.selectionDetails.select(...this.dataSource.data);
+  }
+
+  // The label for the checkbox on the passed details row
+  checkboxLabelDetails(row?: feedetails): string {
+    if (!row) {
+      return `${this.isAllDetailsSelected() ? 'deselect' : 'select'} all details`;
+    }
+    return `${this.selectionDetails.isSelected(row) ? 'deselect' : 'select'} details row ${row.SNo}`;
+  }
+
+  // Reset details selection when expanding/collapsing main rows
+  resetDetailsSelection() {
+    this.selectionDetails.clear();
+  }
+
+  assignToAll() {
+    // Check if more than one row is selected
+    // console.log("SELECTION:",this.selection)
+    // console.log("SELECTION2:",this.selectionDetails)
+    if (this.isAssignToAllActive()) {
+      // Assuming that you need to pass some data to FeeformComponent, modify this part accordingly
+      const dialogRef = this.dialog.open(FeeformComponent, {
+        width: '400px',
+        disableClose: true,
+        data: {
+          selectedRows: this.selection.selected  // Pass the selected rows to FeeformComponent if needed
+        }
+      });
+  
+      // Handle the result from the popup if necessary
+      dialogRef.afterClosed().subscribe(result => {
+        // Perform any actions after the dialog is closed
+      });
+    }
+  }
 }
+
+  

@@ -16,6 +16,9 @@ export class feeassigner{
     id!:string
     name!:string
     reveal:boolean=false
+
+    
+
    setId(id:string){
         this.id=id
         

@@ -1,16 +1,39 @@
 <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-  <ng-container *ngFor="let column of columnsToDisplay; let i = index" [matColumnDef]="column">
+
+
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  
+  
+  <ng-container *ngFor="let column of columnsToDisplaywithoutselect; let i = index" [matColumnDef]="column" >
+    
     <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
     <td mat-cell *matCellDef="let element" (click)="passing(element._id)"> {{ element[column] }} </td>
   </ng-container>
+  
 
   <ng-container matColumnDef="expand" >
     <th mat-header-cell *matHeaderCellDef aria-label="row actions" >&nbsp;</th>
     <td mat-cell *matCellDef="let element" >
-      <!-- <button mat-icon-button aria-label="expand row" (click)="toggleExpand(element); $event.stopPropagation()">
+      <button mat-icon-button aria-label="expand row" (click)="toggleExpand(); $event.stopPropagation()">
         <mat-icon *ngIf="expandendData === element">keyboard_arrow_up</mat-icon>
         <mat-icon *ngIf="expandendData !== element">keyboard_arrow_down</mat-icon>
-      </button> -->
+      </button>
     </td>
   </ng-container>
 
@@ -45,6 +68,7 @@
       </div>
     </td>
   </ng-container>
+  
 
   <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
   <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="example-element-row"
@@ -52,3 +76,4 @@
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table>
+<button mat-raised-button color="primary" (click)="assignToAll()" [disabled]="!isAssignToAllActive()">Assign To All</button>

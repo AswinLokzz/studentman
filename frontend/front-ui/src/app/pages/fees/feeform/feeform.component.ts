@@ -43,5 +43,9 @@ export class FeeformComponent implements OnInit, OnDestroy{
 
   }
 
+  onCancel(): void {
+    this.dialogRef.close(); // Close the dialog
+  }
+
 
 }
