@@ -1,8 +1,9 @@
-import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { Component, DoCheck, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { feeassigner } from 'src/app/services/feeassigner.service';
 import { FeestudentComponent } from '../feestudent/feestudent.component';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'feeform',
@@ -14,7 +15,7 @@ export class FeeformComponent implements OnInit, OnDestroy{
   feelist=[]
 
   constructor(private formBuilder: FormBuilder, public feeAssigner:feeassigner,
-    public dialogRef: MatDialogRef<FeestudentComponent>) {}
+    public dialogRef: MatDialogRef<FeestudentComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit() {
     this.feeForm = this.formBuilder.group({
@@ -22,7 +23,8 @@ export class FeeformComponent implements OnInit, OnDestroy{
       Amount: ['', Validators.required],
       Description: [''],
     });
-    console.log(this.feeAssigner.getId())
+    console.log("data received:", this.data)
+
    
   }
 
@@ -31,12 +33,18 @@ export class FeeformComponent implements OnInit, OnDestroy{
   }
 
   onSubmit() {
-    
-  
-    this.feeForm.value['id']=this.feeAssigner.getId()
-    console.log(this.feeForm.value);
+    for(let item of this.data.id){
 
-    this.feeAssigner.addFee(this.feeForm)
+      this.feeForm.value['id']=item
+      console.log(this.feeForm.value);
+  
+      this.feeAssigner.addFee(this.feeForm)
+    }
+  
+
+
+
+
     this.dialogRef.close()
 
     

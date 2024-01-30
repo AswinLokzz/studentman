@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, DoCheck, ChangeDetectorRef, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck, ChangeDetectorRef, SimpleChanges, AfterViewInit, ViewChild } from '@angular/core';
 import { StudentFormService } from 'src/app/services/studentform.service';
 import { feedetails } from 'src/app/models/feestudent.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { feeassigner } from 'src/app/services/feeassigner.service';
 import { Subscription } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatPaginator } from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 @Component({
   selector: 'feestudent',
   templateUrl: './feestudent.component.html',
@@ -20,7 +22,7 @@ import { SelectionModel } from '@angular/cdk/collections';
     ]),
   ],
 })
-export class FeestudentComponent implements OnInit {
+export class FeestudentComponent implements OnInit{
 
   students: feedetails[] = [];
   dataSource:MatTableDataSource<feedetails> = new MatTableDataSource()
@@ -30,32 +32,51 @@ export class FeestudentComponent implements OnInit {
   columnsToDisplay = ['select','SNo','Fullname', 'Department', 'Year'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandendData!:feedetails|null
+  filtereddata:feedetails[] = []
   feelist:any[]=[]
+  totalposts = 10;  
   id:any[]=[]
   idnew!:string
   show:any[]=[]
+  arr:string[]=[]
   private feeAssignerSubscription!: Subscription;
   selection = new SelectionModel<feedetails>(true, []); // Main rows selection model
   selectionDetails = new SelectionModel<feedetails>(true, []); // Details rows selection model
-
-  constructor(private service: StudentFormService, private dialog:MatDialog, private feeAssigner:feeassigner, private cdref: ChangeDetectorRef) {}
+  @ViewChild(MatPaginator)  paginator!: MatPaginator;
+  @ViewChild(MatSort)sort!: MatSort;
+  constructor(private service: StudentFormService, private dialog:MatDialog,
+     private feeAssigner:feeassigner, private cdref: ChangeDetectorRef) {}
   ;
   ngOnInit(): void {
-    this.feeAssignerSubscription = this.feeAssigner.onSubmit$.subscribe(() => {
-      this.updateStudentList();
-    });
+    // this.feeAssignerSubscription = this.feeAssigner.onSubmit$.subscribe(() => {
+    //   this.updateStudentList();
 
-    this.toggleExpand();
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.getStudentList()
-  }
 
-  updateStudentList() {
+    // });
     this.getStudentList();
-    // Manually trigger change detection
-    this.cdref.detectChanges();
+    this.toggleExpand();
+    this.cdref.detectChanges()
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
   }
+
+  
+
+  // ngAfterViewInit() {
+
+    
+  // }
+
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   this.getStudentList()
+  // }
+
+  // updateStudentList() {
+  //   this.getStudentList();
+  //   // Manually trigger change detection
+  //   // this.cdref.detectChanges();
+  // }
 
   getStudentList(){
     this.service.getStudentForm().subscribe({
@@ -66,13 +87,14 @@ export class FeestudentComponent implements OnInit {
           return student;
         });
 
-        this.dataSource = new MatTableDataSource(this.students);
+        this.dataSource.data = this.students;
         console.log('got it', this.students);
 
       },
       
     });
   }
+  
 
    passing(id:any){
     console.log("it works")
@@ -106,11 +128,13 @@ export class FeestudentComponent implements OnInit {
   
   
   popUp(id:any){
+    this.arr=[]
     this.feeAssigner.setId(id)
+    this.arr.push(id)
     const dialogRef = this.dialog.open(FeeformComponent, {
       width: '400px', // Set the width of your popup
       disableClose:true,
-      data: { /* You can pass data to your popup component if needed */ }
+      data: { id:this.arr }
     });
   
     // Handle the result from the popup if necessary
@@ -134,20 +158,28 @@ export class FeestudentComponent implements OnInit {
     return this.selection.selected.length > 1;
   }
 
-  isAllSelected() {
+  isAllSelected(): boolean  {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.filtereddata.length;
     return numSelected === numRows;
   }
 
   // Selects all main rows if they are not all selected; otherwise clear selection
   toggleAllRows() {
+
+    this.filtereddata = this.dataSource.filteredData;
     if (this.isAllSelected()) {
       this.selection.clear();
-      return;
+ 
+    } else {
+      // Otherwise, select all currently displayed rows
+      this.selection.select(...this.filtereddata);
     }
-  
-    this.selection.select(...this.dataSource.data);
+    
+    
+    // this.selection.select(...this.dataSource.data);
+    // console.log('selection :',this.selection)
+    
   }
   
   // The label for the checkbox on the passed main row
@@ -155,6 +187,7 @@ export class FeestudentComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
+    // console.log('selection row:',this.selection)
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.SNo}`;
   }
 
@@ -173,6 +206,7 @@ export class FeestudentComponent implements OnInit {
     }
 
     this.selectionDetails.select(...this.dataSource.data);
+    console.log("selection details:", this.selectionDetails)
   }
 
   // The label for the checkbox on the passed details row
@@ -189,25 +223,59 @@ export class FeestudentComponent implements OnInit {
   }
 
   assignToAll() {
+    this.arr=[]
+    for (let item of this.selection.selected)
+    {
+      this.arr.push(item._id)
+    }
     // Check if more than one row is selected
-    // console.log("SELECTION:",this.selection)
-    // console.log("SELECTION2:",this.selectionDetails)
+    console.log("SELECTION:",this.selection)
+    console.log("SELECTION2:",this.selectionDetails)
     if (this.isAssignToAllActive()) {
       // Assuming that you need to pass some data to FeeformComponent, modify this part accordingly
       const dialogRef = this.dialog.open(FeeformComponent, {
         width: '400px',
         disableClose: true,
         data: {
-          selectedRows: this.selection.selected  // Pass the selected rows to FeeformComponent if needed
+          id: this.arr  // Pass the selected rows to FeeformComponent if needed
         }
       });
   
       // Handle the result from the popup if necessary
       dialogRef.afterClosed().subscribe(result => {
-        // Perform any actions after the dialog is closed
+        this.feeAssigner.getFeeData().subscribe({
+          next:(res:any)=>{
+            this.feelist=res
+            this.feelist.forEach((item:any)=>{
+               this.id.push(item.studentid)
+            })
+            this.getStudentList()
+    
+         
+            console.log("feelist",this.feelist)
+          }
+        })
       });
     }
+  
+    
+    
   }
+
+  applyFilter(event: Event) {
+    this.arr=[]
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+      const filtereddata = this.dataSource.data.filter(item=>{
+    return Object.values(item).includes(filterValue.trim().toLowerCase())
+    
+        })
+console.log("====>",filtereddata)
+  }
+
+
+
 }
 
   

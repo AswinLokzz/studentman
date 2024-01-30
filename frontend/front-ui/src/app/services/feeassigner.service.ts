@@ -17,6 +17,8 @@ export class feeassigner{
     name!:string
     reveal:boolean=false
 
+    public selectedStudentIDs: string[] = [];
+
     
 
    setId(id:string){
@@ -66,6 +68,8 @@ export class feeassigner{
   getRefresh(){
     return this.reveal
   }
+
+ 
 
 }
 

@@ -1,4 +1,12 @@
-<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  
+<mat-table [dataSource]="dataSource"  multiTemplateDataRows >
 
 
   <ng-container matColumnDef="select">
@@ -63,7 +71,7 @@
         <button mat-raised-button color="primary" (click)="popUp(element._id)">Assign</button>
         
         <div *ngIf="show.includes(element._id)">
-          <p>No fee assigned</p>
+  
         </div>
       </div>
     </td>
@@ -75,5 +83,12 @@
     [class.example-expanded-row]="expandendData === element" (click)="expandendData = expandendData === element ? null : element">
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-</table>
+
+</mat-table> 
+<mat-paginator  #paginator [pageSizeOptions]="[5, 10, 20]"
+showFirstLastButtons
+aria-label="Select page of periodic elements">
+</mat-paginator>
 <button mat-raised-button color="primary" (click)="assignToAll()" [disabled]="!isAssignToAllActive()">Assign To All</button>
+
+</div>
