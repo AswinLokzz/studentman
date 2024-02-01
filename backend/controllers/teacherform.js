@@ -15,7 +15,8 @@ const postTeacherDetails = async (req, res, next) => {
       Email: req.body.Email,
       Username: req.body.Username,
       Password: req.body.Password,
-      Image: req.body.image
+      Image: req.body.image,
+      allSubjects:req.body.allSubjects
     });
 
     console.log("new", newTeacher);

@@ -37,6 +37,9 @@ export class HomeComponent implements OnInit {
       case 'Fees':
         this.router.navigate(['/Fees'])  
         break;
+      case 'Timetable':
+        this.router.navigate(['/Timetables'])  
+        break;
       // Add more cases for other pages if needed
       default:
         // Handle default case or do nothing

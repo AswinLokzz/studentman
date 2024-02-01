@@ -49,6 +49,8 @@ import { FeeassignerComponent } from './pages/fees/feeassigner/feeassigner.compo
 import { FeelistComponent } from './pages/fees/feelist/feelist.component';
 import { FeestudentComponent } from './pages/fees/feestudent/feestudent.component';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
+import { ToastrModule } from 'ngx-toastr';
+import { TimetableComponent } from './pages/timetable/timetable.component';  
 
 
 
@@ -76,10 +78,8 @@ import { LoginpageComponent } from './pages/loginpage/loginpage.component';
     FeeassignerComponent, 
     FeelistComponent, 
     FeestudentComponent, 
-    LoginpageComponent
-    
-   
-    
+    LoginpageComponent, TimetableComponent
+  
     
   ],
   imports: [
@@ -107,7 +107,8 @@ import { LoginpageComponent } from './pages/loginpage/loginpage.component';
     MatButtonModule,
     MatDialogModule, 
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    ToastrModule.forRoot()
    
     
   ],

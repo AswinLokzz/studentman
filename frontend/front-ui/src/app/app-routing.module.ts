@@ -13,6 +13,7 @@ import { FeesComponent } from './pages/fees/fees.component';
 import { FeelistComponent } from './pages/fees/feelist/feelist.component';
 import { FeeassignerComponent } from './pages/fees/feeassigner/feeassigner.component';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
+import { TimetableComponent } from './pages/timetable/timetable.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path:'Fees',
     component:FeesComponent
+  },
+  {
+    path:'Timetables',
+    component:TimetableComponent
   },
   {
     path:'login', component:LoginpageComponent,

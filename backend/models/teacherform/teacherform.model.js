@@ -7,6 +7,7 @@ const TeacherFormSchema = new mongoose.Schema({
   Semester: String,
   Department: String,
   Subject: String,
+  allSubjects:Array,
   Email: String,
   Username: String,
   Password: String,

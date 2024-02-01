@@ -59,6 +59,30 @@
     </div>
     <br />
 
+    <table class="table" *ngIf="teacherarr.length>0" >
+      <thead>
+        <tr>
+          <th scope="col">SNo</th>
+          <th scope="col">Year</th>
+          <th scope="col">Semester</th>
+          <th scope="col">Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let arr of teacherarr, let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{arr.Year}}</td>
+          <td>{{arr.Semester}}</td>
+          <td>{{arr.Subject}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+
+
+    <button mat-button class="confirmbutton" type="button" (click)="onConfirm()">confirm</button>
+
     <div class="form-row">
       <mat-form-field>
         <mat-label>Enter your email</mat-label>

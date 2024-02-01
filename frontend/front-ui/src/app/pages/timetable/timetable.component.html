@@ -1,0 +1,70 @@
+<mat-card>
+    <mat-card-content>
+        <label for="semester" [(ngModel)]="selectedSemester" ngDefaultControl (change)="onChange()">Choose Semester:</label>
+        <select name="semester" id="semester" [(ngModel)]="selectedSemester">
+            <option value="S1">S1</option>
+            <option value="S3">S3</option>
+            <option value="S5">S5</option>
+            <option value="S7">S7</option>
+          </select>
+
+          <label for="Departement" [(ngModel)]="selectedDepartment" ngDefaultControl (change)="onChange()">Choose Department:</label>
+        <select name="Department" id="Department" [(ngModel)]="selectedDepartment">
+            <option value="CS">CS</option>
+            <option value="ME">ME</option>
+            <option value="EEE">EEE</option>
+            <option value="EC">EC</option>
+          </select>
+
+          
+    </mat-card-content>
+    <div class="table" *ngIf="selectedDepartment==='CS' && selectedSemester==='S1'" >
+
+        <div class="heading">Timetable of {{selectedSemester}}</div>
+        <div class="table-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col"><b>Day</b></th>
+
+                      <th scope="col"><b>First</b></th>
+                      <th scope="col"><b>Second</b></th>
+                      <th scope="col"><b>Third</b></th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr >
+                      <th scope="row"><b>MON</b></th>
+                      <td>Sub 1 CS Mon</td>
+                      <td>Sub 2 CS Mon</td>
+                      <td>Sub 3 CS Mon</td>
+                    </tr>
+                    <tr >
+                      <th scope="row"><b>TUE</b></th>
+                      <td>Sub 1 CS TUE</td>
+                      <td>Sub 2 CS TUE</td>
+                      <td>Sub 3 CS TUE</td>
+                    </tr>
+                    <tr >
+                      <th scope="row"><b>WED</b></th>
+                      <td>Sub 1 CS WED</td>
+                      <td>Sub 2 CS WED</td>
+                      <td>Sub 3 CS WED</td>
+                    </tr>
+                    
+                  </tbody>
+            </table>
+        </div>
+
+        
+    </div>
+    
+
+      
+     
+
+  
+     
+            
+</mat-card>

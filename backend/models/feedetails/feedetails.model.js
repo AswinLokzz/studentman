@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 
 const feeDetailsItem= new mongoose.Schema({
-    studentid:String,
+    studentid: {type:mongoose.Schema.Types.ObjectId,
+    ref:'StudentListItem'},
     FeeType:String,
     Amount:String,
     Description:String

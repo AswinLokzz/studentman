@@ -117,6 +117,7 @@ export class TeacherFormService {
     })
   }
 
+
   uploadImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('image', file, file.name);

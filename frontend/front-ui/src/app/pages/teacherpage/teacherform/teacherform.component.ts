@@ -3,6 +3,9 @@ import { TeacherFormService } from 'src/app/services/teacherform.service';
 import { teacherform } from 'src/app/models/teacherform.model';
 import { FormGroup, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-teacherform',
@@ -21,8 +24,10 @@ export class TeacherformComponent implements OnInit {
   uploadProgress = 0;
   imagePreview: string | ArrayBuffer | null = null;
   id:any
+  index=0;
   details:any
-  constructor(private teacherFormService: TeacherFormService, private http:HttpClient) {}
+  teacherarr:any[]=[]
+  constructor(private teacherFormService: TeacherFormService, private http:HttpClient, private toaster:ToastrService) {}
 
   ngOnInit(): void {
    
@@ -98,9 +103,34 @@ export class TeacherformComponent implements OnInit {
   submitForm(): void {
     console.log(this.teacherform.value as teacherform);
     this.teacherform.value['image']=this.selectedFile?.name
+    this.teacherform.value['allSubjects']=this.teacherarr
     this.teacherFormService.addTeacher(this.teacherform);
-    this.teacherform.reset();
+    this.teacherform.patchValue({
+      Fullname: ' ',
+      Gender: ' ',
+      Email: ' ',
+      Semester: '',
+      Year: ' ',
+      subject: ' ',
+      Department: ' ',
+      Username: ' ',
+      Password: '',
+      
+    });
+    this.selectedFile=null
+    this.teacherarr.slice(0,this.teacherarr.length)
+    this.toaster.success("Teacher Added Successfully")
     
+  }
+
+  onConfirm(){
+    this.teacherarr.push({
+      Year:this.teacherform.value.Year,
+      Semester:this.teacherform.value.Semester,
+      Subject:this.teacherform.value.subject,
+    })
+    console.log("--->",this.teacherarr)
+    this.toaster.success("the subject has been added")
   }
 
 }
