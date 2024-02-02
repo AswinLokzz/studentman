@@ -38,10 +38,22 @@ export class LoginpageComponent implements OnInit {
     console.log("form", this.loginform);
     this.service.loginAction(this.loginform).subscribe({
       next: (data: any) => {
+    
         console.log('Data from service:', data);
+        if(data.role==="Student"){
+          localStorage.setItem("student_id",data._id)
+          this.router.navigate(['Students/home'])
+        }
+        else if(data.role==="Admin"){
+
+        }
+        else if(data.role==="Teacher"){
+          localStorage.setItem("teacher_id",data._id)
+          this.router.navigate(['Teachers/home'])
+        }
         console.log('Form Values:', this.loginform.value);
         this.submitting = false;
-        this.router.navigate(['/home'])
+        // this.router.navigate(['/home'])
         
       },
       error: (error) => {

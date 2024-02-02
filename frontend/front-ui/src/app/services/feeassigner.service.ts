@@ -47,8 +47,8 @@ export class feeassigner{
     })
     }
 
-    getFeeData(){
-        return this.http.get('http://localhost:3000/Fees/form');
+    getFeeData(id:string){
+        return this.http.get('http://localhost:3000/Fees/form/'+id);
     }
 
     private onSubmitSubject = new BehaviorSubject<void>(null as unknown as void)

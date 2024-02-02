@@ -5,6 +5,6 @@ var router = express.Router();
 const FeeFormController=require('../controllers/fee')
 
 router.post('/', FeeFormController.postfeeDetails);
-router.get('/',FeeFormController.getFeeDetails)
+router.get('/:id',FeeFormController.getFeeDetails)
 
 module.exports=router

@@ -20,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -51,6 +52,8 @@ import { FeestudentComponent } from './pages/fees/feestudent/feestudent.componen
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TimetableComponent } from './pages/timetable/timetable.component';  
+import { SubjectsComponent } from './pages/subjects/subjects.component';
+import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
 
 
 
@@ -78,7 +81,10 @@ import { TimetableComponent } from './pages/timetable/timetable.component';
     FeeassignerComponent, 
     FeelistComponent, 
     FeestudentComponent, 
-    LoginpageComponent, TimetableComponent
+    LoginpageComponent, 
+    TimetableComponent,
+    SubjectsComponent,
+    FeesideComponent
   
     
   ],
@@ -108,7 +114,8 @@ import { TimetableComponent } from './pages/timetable/timetable.component';
     MatDialogModule, 
     MatPaginatorModule,
     MatSortModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatTabsModule
    
     
   ],

@@ -14,24 +14,34 @@ import { FeelistComponent } from './pages/fees/feelist/feelist.component';
 import { FeeassignerComponent } from './pages/fees/feeassigner/feeassigner.component';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
+import { SubjectsComponent } from './pages/subjects/subjects.component';
+import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'Students/home', component: HomeComponent },
+  {
+    path:'Students/Fees',
+    component:FeesideComponent
+  },
   {
     path: 'Students',
     component: StudentpageComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
+
       { path: 'list', component: StudentlistComponent },
       { path: 'form', component: StudentformComponent },
       {path:'view/:_id',component:StudentviewComponent}
     ],
   },
+  { path: 'Teachers/home', component: HomeComponent },
   {
     path: 'Teachers',
     component: TeacherpageComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
+     
       { path: 'list', component: TeacherlistComponent},
       { path: 'form', component: TeacherformComponent },
       {path:'view/:_id',component:TeacherviewComponent},
@@ -50,6 +60,10 @@ const routes: Routes = [
     children:[
       {path:'home',component:HomeComponent}
     ]
+  },
+  {
+    path:'Subjects',
+    component:SubjectsComponent
   }
 ];
 

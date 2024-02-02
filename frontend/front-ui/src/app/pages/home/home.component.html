@@ -1,11 +1,42 @@
 <mat-spinner *ngIf=""></mat-spinner>
 <div class="card-container">
-    <div *ngFor="let contentItem of contentData" class="card" (click)="navigateToPage(contentItem.name)">
-      <div class="card-content">
-        <img [src]="contentItem.icon" alt="{{ contentItem.name }} Icon" />
-        <h2>{{ contentItem.name }}</h2>
-      </div>
+  <ng-container *ngFor="let contentItem of contentData" >
+
+
+  <ng-container *ngIf="studentFlag && studentItems.includes(contentItem.name)">
+    <div class="card" (click)="navigateToStudentPage(contentItem.name)">
+      
+        <div class="card-content">
+          <img [src]="contentItem.icon" alt="{{ contentItem.name }} Icon" />
+          <h2>{{ contentItem.name }}</h2>
+        </div>
+
+
     </div>
+  </ng-container>
+    <ng-container *ngIf="teacherFlag && teacherItems.includes(contentItem.name)">
+      <div class="card" (click)="navigateToTeacherPage(contentItem.name)">
+        
+          <div class="card-content">
+            <img [src]="contentItem.icon" alt="{{ contentItem.name }} Icon" />
+            <h2>{{ contentItem.name }}</h2>
+          </div>
+  
+  
+      </div>
+    </ng-container>
+    <ng-container *ngIf="adminFlag">
+      <div class="card" (click)="navigateToPage(contentItem.name)">
+        
+          <div class="card-content">
+            <img [src]="contentItem.icon" alt="{{ contentItem.name }} Icon" />
+            <h2>{{ contentItem.name }}</h2>
+          </div>
+  
+  
+      </div>
+    </ng-container>
+  </ng-container>
 </div>
 <!-- <div class="card-container" (click)="navigateToPage(contentItem.name)" *ngFor="let contentItem of contentData" class="card">
   <div class="card-content">

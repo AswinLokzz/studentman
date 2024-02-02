@@ -12,10 +12,29 @@ import { HomeContentService } from 'src/app/services/homeContent.service';
 })
 export class HomeComponent implements OnInit {
   public contentData: homeContentModel[] = [];
-
+  private Locationdata = window.location.pathname
+  public studentFlag:boolean = false
+  public teacherFlag:boolean = false
+  public adminFlag:boolean = false
+  public studentItems= ['Fees','Timetable','Subjects']
+  public teacherItems= ['Students','Timetable']
   constructor(private contentService: HomeContentService, private router: Router) {}
 
   ngOnInit(): void {
+     this.studentFlag = false
+     this.teacherFlag = false
+     this.adminFlag = false
+    console.log("Location: ",this.Locationdata)
+    if(this.Locationdata === "/Teachers/home"){
+      this.teacherFlag = true
+      // console.log("I am here")
+    }
+    else if(this.Locationdata === "/Students/home"){
+      this.studentFlag = true
+    }
+    else if(this.Locationdata === "/"){
+      this.adminFlag = true
+    }
     this.contentService.getContentData().subscribe({
       next: (data: homeContentModel[]) => {
         this.contentData = data;
@@ -39,6 +58,43 @@ export class HomeComponent implements OnInit {
         break;
       case 'Timetable':
         this.router.navigate(['/Timetables'])  
+        break;
+      case 'Subjects':
+        this.router.navigate(['/Subjects'])  
+        break;
+      // Add more cases for other pages if needed
+      default:
+        // Handle default case or do nothing
+        break;
+    }
+  }
+
+  navigateToTeacherPage(pageName: string) {
+    switch (pageName) {
+      case 'Students':
+        this.router.navigate(['Teachers/Students']);
+        break;
+      case 'Timetable':
+        this.router.navigate(['Teachers/Timetables'])  
+        break;
+      // Add more cases for other pages if needed
+      default:
+        // Handle default case or do nothing
+        break;
+    }
+  }
+
+
+  navigateToStudentPage(pageName: string) {
+    switch (pageName) {
+      case 'Fees':
+        this.router.navigate(['Students/Fees'])  
+        break;
+      case 'Timetable':
+        this.router.navigate(['Students/Timetables'])  
+        break;
+      case 'Subjects':
+        this.router.navigate(['Students/Subjects'])  
         break;
       // Add more cases for other pages if needed
       default:

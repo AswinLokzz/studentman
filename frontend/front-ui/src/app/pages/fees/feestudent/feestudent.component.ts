@@ -110,7 +110,7 @@ export class FeestudentComponent implements OnInit{
 
   toggleExpand() {
     // this.expandendData = this.expandendData === element ? null : element;
-    this.feeAssigner.getFeeData().subscribe({
+    this.feeAssigner.getFeeData('null').subscribe({
       next:(res:any)=>{
         this.feelist=res
         this.feelist.forEach((item:any)=>{
@@ -139,7 +139,7 @@ export class FeestudentComponent implements OnInit{
   
     // Handle the result from the popup if necessary
     dialogRef.afterClosed().subscribe(result => {
-      this.feeAssigner.getFeeData().subscribe({
+      this.feeAssigner.getFeeData('null').subscribe({
         next:(res:any)=>{
           this.feelist=res
           this.feelist.forEach((item:any)=>{
@@ -243,7 +243,7 @@ export class FeestudentComponent implements OnInit{
   
       // Handle the result from the popup if necessary
       dialogRef.afterClosed().subscribe(result => {
-        this.feeAssigner.getFeeData().subscribe({
+        this.feeAssigner.getFeeData('null').subscribe({
           next:(res:any)=>{
             this.feelist=res
             this.feelist.forEach((item:any)=>{

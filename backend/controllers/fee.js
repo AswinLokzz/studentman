@@ -1,4 +1,5 @@
 const feeDetailsItems = require("../models/feedetails/feedetails.model");
+const mongoose = require("mongoose");
 
 const postfeeDetails = async (req, res, next) => {
   try {
@@ -21,16 +22,34 @@ const postfeeDetails = async (req, res, next) => {
 
 const getFeeDetails = async (req, res) => {
   try {
-    console.log("hwllo")
-    const feeDetailsData = await feeDetailsItems.find();
-    if (!feeDetailsData) {
-      return res.status(500).json({ message: "not found" });
+    console.log("hwllo:", req.params);
+    const id = req.params.id;
+
+    if (id === 'null') {
+      
+      const AdminfeeDetailsData = await feeDetailsItems.find();
+      console.log("====>",AdminfeeDetailsData)
+      if (AdminfeeDetailsData.length === 0) {
+        return res.status(400).json({ message: "not found" });
+      }
+      console.log("-++++++>", AdminfeeDetailsData);
+      return res.status(200).send(AdminfeeDetailsData);
     }
-    console.log(feeDetailsData);
+    console.log("---+>",id)
+    let string_id = id.toString()
+    console.log("---+>",string_id)
+    const feeDetailsData = await feeDetailsItems.find({ 
+      studentid:
+      id});
+    console.log("------>", feeDetailsData);
+    if (feeDetailsData.length === 0) {
+      return res.status(401).json({ message: "not found" });
+    }
+
     return res.status(200).send(feeDetailsData);
   } catch (error) {
     console.error("Error fetching homepage data:", error.message);
     res.status(500).send("Internal Server Error");
   }
 };
-module.exports = { postfeeDetails,getFeeDetails };
+module.exports = { postfeeDetails, getFeeDetails };
