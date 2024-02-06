@@ -22,6 +22,7 @@ export class FeeformComponent implements OnInit, OnDestroy{
       FeeType: ['', Validators.required],
       Amount: ['', Validators.required],
       Description: [''],
+      Status:['Unpaid',Validators.required]
     });
     console.log("data received:", this.data)
 

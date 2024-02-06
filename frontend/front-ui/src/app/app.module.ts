@@ -25,7 +25,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 
 import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -54,6 +54,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { TimetableComponent } from './pages/timetable/timetable.component';  
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 
 
@@ -120,7 +121,8 @@ import { FeesideComponent } from './pages/studentside/feeside/feeside.component'
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS,   
+    useClass:AuthInterceptor, multi: true}],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

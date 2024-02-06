@@ -18,14 +18,15 @@ import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginpageComponent },
   { path: 'Students/home', component: HomeComponent },
   {
     path:'Students/Fees',
     component:FeesideComponent
   },
+  {path:'admin/home', component:HomeComponent},
   {
-    path: 'Students',
+    path: 'admin/home/Students',
     component: StudentpageComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
@@ -35,40 +36,40 @@ const routes: Routes = [
       {path:'view/:_id',component:StudentviewComponent}
     ],
   },
-  { path: 'Teachers/home', component: HomeComponent },
   {
-    path: 'Teachers',
+    path: 'admin/home/Teachers',
     component: TeacherpageComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
-     
+      
       { path: 'list', component: TeacherlistComponent},
       { path: 'form', component: TeacherformComponent },
       {path:'view/:_id',component:TeacherviewComponent},
     ],
   },
   {
-    path:'Fees',
+    path:'admin/home/Fees',
     component:FeesComponent
   },
   {
-    path:'Timetables',
+    path:'admin/home/Timetables',
     component:TimetableComponent
   },
-  {
-    path:'login', component:LoginpageComponent,
-    children:[
-      {path:'home',component:HomeComponent}
-    ]
-  },
-  {
-    path:'Subjects',
-    component:SubjectsComponent
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
+  // {
+    //   path:'login', component:LoginpageComponent,
+    //   children:[
+      //     {path:'home',component:HomeComponent}
+      //   ]
+      // },
+      {
+        path:'admin/home/Subjects',
+        component:SubjectsComponent
+      },
+      { path: 'Teachers/home', component: HomeComponent },
+    ];
+    
+    @NgModule({
+      imports: [RouterModule.forRoot(routes)],
+      exports: [RouterModule],
+    })
 export class AppRoutingModule {}

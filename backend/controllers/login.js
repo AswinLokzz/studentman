@@ -5,27 +5,29 @@ const {LocalStorage} = require('node-localstorage')
 // constructor function to create a storage directory inside our project for all our localStorage setItem.
 var localStorage = new LocalStorage('./scratch');
 
+const jwt = require("jsonwebtoken");  
+
+
 const postLoginData= async(req,res)=>{
     console.log(req.body)
     try{
         const username= req.body.Username
         const password=req.body.Password
+        const token = jwt.sign({username: username} , 'A_very_long_string_for_our_secret',  { expiresIn: "1h"}  );  
         console.log("USER="+username+"PASS"+password)
         if((username=='admin')&&(password=="1234")){
-            return res.status(200).json("Admin")
+            return res.status(200).json({role:"Admin",token: token})
         }
         const foundTeacher = await TeacherDataList.findOne({Username:username,Password:password})
         
-        // console.log("--->",foundTeacher)
+        console.log("--->",foundTeacher)
         if(foundTeacher){
-            // localStorage.setItem("teacher_id","foundTeacher._id")
-            return res.status(200).json({role:"Teacher",_id:foundTeacher._id})
+            return res.status(200).json({role:"Teacher",_id:foundTeacher._id,token: token  })
         }
         const foundStudent = await StudentListItem.findOne({Username:username,Password:password})
-        // console.log("+++>",foundStudent)
+        console.log("+++>",foundStudent)
         if(foundStudent){
-            // localStorage.setItem("student_id","foundStudent._id")
-            return res.status(200).json({role:"Student",_id:foundStudent._id})
+            return res.status(200).json({role:"Student",_id:foundStudent._id,token: token  })
         }
         return res.status(401).json({message:"invalid credentials"})
     }catch (error) {

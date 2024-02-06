@@ -10,7 +10,7 @@ import { loginfromservice } from 'src/app/services/login.service';
 })
 export class LoginpageComponent implements OnInit {
   submitting=false
-
+  private token:string = ''
   loginform!: FormGroup;
 
   constructor(private fb:FormBuilder, public service:loginfromservice, private router:Router){}
@@ -43,13 +43,29 @@ export class LoginpageComponent implements OnInit {
         if(data.role==="Student"){
           localStorage.setItem("student_id",data._id)
           this.router.navigate(['Students/home'])
-        }
-        else if(data.role==="Admin"){
-
+          const token = data.token;  
+          this.token = token; 
+          localStorage.setItem("Token",this.token)
+          localStorage.setItem("state",data.role)
+          this.service.setToken(this.token) 
         }
         else if(data.role==="Teacher"){
+          const token = data.token;  
+          this.token = token; 
+          localStorage.setItem("Token",this.token)
           localStorage.setItem("teacher_id",data._id)
+          localStorage.setItem("state",'Teacher')
           this.router.navigate(['Teachers/home'])
+          this.service.setToken(this.token) 
+        }
+        else{
+          const token = data.token;  
+          this.token = token;
+          localStorage.setItem("Token",this.token)
+          localStorage.setItem("state",'Admin')
+          this.router.navigate(['/admin/home'])
+          this.service.setToken(this.token)
+
         }
         console.log('Form Values:', this.loginform.value);
         this.submitting = false;

@@ -10,6 +10,7 @@ const postfeeDetails = async (req, res, next) => {
       FeeType: req.body.FeeType,
       Amount: req.body.Amount,
       Description: req.body.Description,
+      Status:req.body.Status
     });
     console.log("new", newFeedetails);
     await newFeedetails.save();

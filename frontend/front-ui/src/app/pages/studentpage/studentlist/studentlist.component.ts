@@ -56,6 +56,6 @@ export class StudentlistComponent implements OnInit,OnDestroy{
 
   navigateToView(_id:any){
     console.log('Navigating to view with ID:', _id);
-    this.router.navigate(['/Students/view',_id])
+    this.router.navigate(['/admin/home/Students/view',_id])
   }
 }

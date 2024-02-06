@@ -11,11 +11,11 @@ export class StudentsidebarComponent {
   constructor(private router:Router){}
 
   navigateToStudentsList(){
-    this.router.navigate(['/Students/list']);
+    this.router.navigate(['admin/home/Students/list']);
   }
 
   navigateToAddStudent(){
-    this.router.navigate(['/Students/form']);
+    this.router.navigate(['admin/home/Students/form']);
   }
 
 }

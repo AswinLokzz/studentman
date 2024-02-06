@@ -12,13 +12,13 @@ export class TeachersidebarComponent {
   constructor(private router:Router, private service:TeacherFormService){}
 
   navigateToTeachersList(){
-    this.router.navigate(['/Teachers/list']);
+    this.router.navigate(['admin/home/Teachers/list']);
     // this.service.setshow()
     // console.log(this.service.getshow())
   }
 
   navigateToAddTeacher(){
-    this.router.navigate(['/Teachers/form']);
+    this.router.navigate(['admin/home/Teachers/form']);
   }
 
 }

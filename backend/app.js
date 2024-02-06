@@ -166,6 +166,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+app.use((req, res, next)=>{  
+  res.setHeader("Access-Control-Allow-Origin", "*"); 
+  res.setHeader(  
+    "Access-Control-Allow-Headers",  
+    "Origin, X-Requested-With, Content-Type, Accept");  
+    res.setHeader("Access-Control-Allow-Methods",  
+    "GET, POST, PATCH, DELETE, OPTIONS");  
+    res.setHeader(  
+      "Access-Control-Allow-Headers",  
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization");   
+  next();  
+});  
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

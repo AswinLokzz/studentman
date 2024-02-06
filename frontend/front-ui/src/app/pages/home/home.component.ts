@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     else if(this.Locationdata === "/Students/home"){
       this.studentFlag = true
     }
-    else if(this.Locationdata === "/"){
+    else if(this.Locationdata === "/admin/home"){
       this.adminFlag = true
     }
     this.contentService.getContentData().subscribe({
@@ -48,19 +48,19 @@ export class HomeComponent implements OnInit {
   navigateToPage(pageName: string) {
     switch (pageName) {
       case 'Students':
-        this.router.navigate(['/Students']);
+        this.router.navigate(['/admin/home/Students']);
         break;
       case 'Teachers':
-        this.router.navigate(['/Teachers']);
+        this.router.navigate(['/admin/home/Teachers']);
         break;
       case 'Fees':
-        this.router.navigate(['/Fees'])  
+        this.router.navigate(['/admin/home/Fees'])  
         break;
       case 'Timetable':
-        this.router.navigate(['/Timetables'])  
+        this.router.navigate(['/admin/home/Timetables'])  
         break;
       case 'Subjects':
-        this.router.navigate(['/Subjects'])  
+        this.router.navigate(['/admin/home/Subjects'])  
         break;
       // Add more cases for other pages if needed
       default:

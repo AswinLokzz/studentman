@@ -7,7 +7,8 @@ const feeDetailsSchema = new mongoose.Schema({
   },
   FeeType: String,
   Amount: String,
-  Description: String
+  Description: String,
+  Status:String,
 });
 
 const feeDetailsItems = mongoose.model('feeDetailsItems', feeDetailsSchema);

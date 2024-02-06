@@ -34,7 +34,7 @@ export class TeacherlistComponent implements OnInit {
 
   navigateToView(_id:any){
     console.log('Navigating to view with ID:', _id);
-    this.router.navigate(['/Teacher/view',_id])
+    this.router.navigate(['/admin/home/Teacher/view',_id])
   }
   
   
