@@ -1,70 +1,44 @@
-<mat-card>
-    <mat-card-content>
-        <label for="semester" [(ngModel)]="selectedSemester" ngDefaultControl (change)="onChange()">Choose Semester:</label>
-        <select name="semester" id="semester" [(ngModel)]="selectedSemester">
-            <option value="S1">S1</option>
-            <option value="S3">S3</option>
-            <option value="S5">S5</option>
-            <option value="S7">S7</option>
-          </select>
+<h1 style="text-align: center">TIME TABLE</h1>
 
-          <label for="Departement" [(ngModel)]="selectedDepartment" ngDefaultControl (change)="onChange()">Choose Department:</label>
-        <select name="Department" id="Department" [(ngModel)]="selectedDepartment">
-            <option value="CS">CS</option>
-            <option value="ME">ME</option>
-            <option value="EEE">EEE</option>
-            <option value="EC">EC</option>
-          </select>
+<mat-form-field>
+  <mat-label>Select Subject</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let day of Days" [value]="day.value">{{ day.viewValue }}</mat-option>
+  </mat-select>
+</mat-form-field>
 
-          
-    </mat-card-content>
-    <div class="table" *ngIf="selectedDepartment==='CS' && selectedSemester==='S1'" >
-
-        <div class="heading">Timetable of {{selectedSemester}}</div>
-        <div class="table-content">
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col"><b>Day</b></th>
-
-                      <th scope="col"><b>First</b></th>
-                      <th scope="col"><b>Second</b></th>
-                      <th scope="col"><b>Third</b></th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr >
-                      <th scope="row"><b>MON</b></th>
-                      <td>Sub 1 CS Mon</td>
-                      <td>Sub 2 CS Mon</td>
-                      <td>Sub 3 CS Mon</td>
-                    </tr>
-                    <tr >
-                      <th scope="row"><b>TUE</b></th>
-                      <td>Sub 1 CS TUE</td>
-                      <td>Sub 2 CS TUE</td>
-                      <td>Sub 3 CS TUE</td>
-                    </tr>
-                    <tr >
-                      <th scope="row"><b>WED</b></th>
-                      <td>Sub 1 CS WED</td>
-                      <td>Sub 2 CS WED</td>
-                      <td>Sub 3 CS WED</td>
-                    </tr>
-                    
-                  </tbody>
-            </table>
-        </div>
-
-        
-    </div>
-    
-
-      
-     
-
-  
-     
-            
-</mat-card>
+<div class="timetable">
+  <table>
+    <caption>
+      Timetable
+    </caption>
+    <thead>
+      <tr>
+        <th>Day/Period</th>
+        <th>I<br />9:30-10:20</th>
+        <th>II<br />10:20-11:10</th>
+        <th>III<br />11:10-12:00</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Monday</b></td>
+        <td>Eng</td>
+        <td>Mat</td>
+        <td>Che</td>
+      </tr>
+      <tr>
+        <td><b>Tuesday</b></td>
+        <td>Eng</td>
+        <td>Che</td>
+        <td>Mat</td>
+      </tr>
+      <tr>
+        <td><b>Wednesday</b></td>
+        <td>Mat</td>
+        <td>phy</td>
+        <td>Eng</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 
+
+interface day {
+  value: string;
+  viewValue: string;
+}
+
+
 @Component({
-  selector: 'timetable',
+  selector: 'app-timetable',
   templateUrl: './timetable.component.html',
   styleUrls: ['./timetable.component.css']
 })
 export class TimetableComponent {
-
-  selectedSemester:string=""
-  selectedDepartment:string=""
-
-  onChange(){
-    console.log(this.selectedSemester)
-    console.log(this.selectedDepartment)
-  }
-
-
+  Days: day[] = [
+    {value: '0', viewValue: 'Steak'},
+    {value: '1', viewValue: 'Pizza'},
+    {value: '2', viewValue: 'Tacos'},
+  ];
 }

@@ -51,7 +51,7 @@ import { FeelistComponent } from './pages/fees/feelist/feelist.component';
 import { FeestudentComponent } from './pages/fees/feestudent/feestudent.component';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { ToastrModule } from 'ngx-toastr';
-import { TimetableComponent } from './pages/timetable/timetable.component';  
+import { TimetableComponent } from './pages/timetable/timetable.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
 import { AuthInterceptor } from './services/auth-interceptor';

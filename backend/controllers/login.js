@@ -56,5 +56,5 @@ const getLoginData= async(req,res)=>{
 }
 
 module.exports={
-    postLoginData
+    postLoginData, getLoginData
 }

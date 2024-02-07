@@ -6,5 +6,6 @@ const FeeFormController=require('../controllers/fee')
 
 router.post('/', FeeFormController.postfeeDetails);
 router.get('/:id',FeeFormController.getFeeDetails)
+router.put('/update',FeeFormController.updatefeeDetails)
 
 module.exports=router

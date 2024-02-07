@@ -16,7 +16,8 @@
                         <td>{{item.FeeType}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Description}}</td>
-                        <td><button type="button" class="btn btn-primary btn-sm" (click)="PayNow(item.amount, item.id)">Pay</button></td>
+                        <td *ngIf="item.Status=='Unpaid'"><button type="button" class="btn btn-primary btn-sm" (click)="PayNow(item.Amount, item.FeeType ,item._id)">Pay</button></td>
+                        <td *ngIf="item.Status=='Paid'">Fee Paid</td>
                   </tr>
                   
                 </tbody>

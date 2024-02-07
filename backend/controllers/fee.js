@@ -1,5 +1,6 @@
 const feeDetailsItems = require("../models/feedetails/feedetails.model");
 const mongoose = require("mongoose");
+const StudentListItem=require("../models/studentspage/StudentListItem.model")
 
 const postfeeDetails = async (req, res, next) => {
   try {
@@ -40,17 +41,36 @@ const getFeeDetails = async (req, res) => {
     let string_id = id.toString()
     console.log("---+>",string_id)
     const feeDetailsData = await feeDetailsItems.find({ 
-      studentid:
-      id});
+      studentid:id});
+
+    const studentdetailsdata=await StudentListItem.findOne({_id:id})
     console.log("------>", feeDetailsData);
+    console.log("student details:",studentdetailsdata)
     if (feeDetailsData.length === 0) {
       return res.status(401).json({ message: "not found" });
     }
 
-    return res.status(200).send(feeDetailsData);
+    return res.status(200).json({fee:feeDetailsData, student:studentdetailsdata});
   } catch (error) {
     console.error("Error fetching homepage data:", error.message);
     res.status(500).send("Internal Server Error");
   }
+
+  
 };
-module.exports = { postfeeDetails, getFeeDetails };
+
+const updatefeeDetails=async(req,res)=>{
+  try{
+    const id=req.body.id
+    console.log(req.body)
+    const fee=await feeDetailsItems.findOne({_id:id})
+    console.log(fee)
+    fee.Status="Paid"
+    await fee.save();
+    return res.status(200).json({ message: "successfully updated" });
+  } catch (error) {
+    console.error("Error fetching homepage data:", error.message);
+    res.status(500).send("Internal Server Error");
+  }
+}
+module.exports = { postfeeDetails, getFeeDetails,updatefeeDetails };

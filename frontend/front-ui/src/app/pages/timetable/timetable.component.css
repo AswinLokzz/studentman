@@ -1,13 +1,26 @@
-select{
-    width: 50px;
-    margin-left: 10px;
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 50px auto;
+    border: 2px solid #333;
 }
 
-mat-card{
-    height: 75vh;
-    width: 80%;
-    margin: 10px;
-    margin-left: 190px;
-    margin-top: 30px;
-    background-color: rgba(255, 228, 196, 0.446);
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+caption {
+    caption-side: top;
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
