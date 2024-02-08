@@ -55,6 +55,7 @@ import { TimetableComponent } from './pages/timetable/timetable.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
 import { AuthInterceptor } from './services/auth-interceptor';
+import { TableComponent } from './pages/timetable/table/table.component';
 
 
 
@@ -85,7 +86,8 @@ import { AuthInterceptor } from './services/auth-interceptor';
     LoginpageComponent, 
     TimetableComponent,
     SubjectsComponent,
-    FeesideComponent
+    FeesideComponent,
+    TableComponent
   
     
   ],

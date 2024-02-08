@@ -1,0 +1,80 @@
+<h1 style="text-align: center">TIME TABLE</h1>
+<div [formGroup]="tableform" (submit)="apple()">
+  <mat-form-field>
+    <mat-label>Select Day</mat-label>
+    <mat-select formControlName="Day" required id="daySelect">
+      <mat-option *ngFor="let day of Days" [value]="day.viewValue">{{ day.viewValue }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select Hour</mat-label>
+    <mat-select formControlName="Hour" required>
+      <mat-option *ngFor="let hour of Hours" [value]="hour.viewValue">{{ hour.viewValue }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select Department</mat-label>
+    <mat-select formControlName="Department" required>
+      <mat-option *ngFor="let department of Departments" [value]="department.viewValue">{{ department.viewValue }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select Semester</mat-label>
+    <mat-select formControlName="Semester" required>
+      <mat-option *ngFor="let semester of Semesters" [value]="semester.viewValue">{{ semester.viewValue }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select Subject</mat-label>
+    <mat-select formControlName="Subject" required>
+      <mat-option *ngFor="let subject of Subjects" [value]="subject.viewValue">{{ subject.viewValue }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+
+<!-- <div class="timetable">
+  <table>
+    <caption>
+      Timetable
+    </caption>
+    <thead>
+      <tr>
+        <th>Day/Period</th>
+        <th>I<br />9:30-10:20</th>
+        <th>II<br />10:20-11:10</th>
+        <th>III<br />11:10-12:00</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Monday</b></td>
+        <td>Eng</td>
+        <td>Mat</td>
+        <td>Che</td>
+      </tr>
+      <tr>
+        <td><b>Tuesday</b></td>
+        <td>Eng</td>
+        <td>Che</td>
+        <td>Mat</td>
+      </tr>
+      <tr>
+        <td><b>Wednesday</b></td>
+        <td>Mat</td>
+        <td>phy</td>
+        <td>Eng</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<div class="example-button-row">
+  <button mat-raised-button color="grey" type="submit" (click)="apple()" >Add TimeTable</button>
+</div>
+

@@ -1,44 +1,56 @@
-<h1 style="text-align: center">TIME TABLE</h1>
-
-<mat-form-field>
-  <mat-label>Select Subject</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let day of Days" [value]="day.value">{{ day.viewValue }}</mat-option>
-  </mat-select>
-</mat-form-field>
-
-<div class="timetable">
-  <table>
-    <caption>
-      Timetable
-    </caption>
-    <thead>
-      <tr>
-        <th>Day/Period</th>
-        <th>I<br />9:30-10:20</th>
-        <th>II<br />10:20-11:10</th>
-        <th>III<br />11:10-12:00</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Monday</b></td>
-        <td>Eng</td>
-        <td>Mat</td>
-        <td>Che</td>
-      </tr>
-      <tr>
-        <td><b>Tuesday</b></td>
-        <td>Eng</td>
-        <td>Che</td>
-        <td>Mat</td>
-      </tr>
-      <tr>
-        <td><b>Wednesday</b></td>
-        <td>Mat</td>
-        <td>phy</td>
-        <td>Eng</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened
+    ><h4>DEPARTMENTS</h4>
+    <br />
+    <div class="contianer">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> CS </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="d-flex">
+          <mat-card class="contain">
+            <mat-card-content class="sem">
+              <h6>S1</h6>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="contain">
+            <mat-card-content class="sem">
+              <h6>S3</h6>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="contain">
+            <mat-card-content class="sem">
+              <h6>S5</h6>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="contain">
+            <mat-card-content class="sem">
+              <h6>S7</h6>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> ME </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <br>
+    <div class="addition">
+      <button mat-raised-button >Add Table</button>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+   <table></table>
+  </mat-drawer-content>
+</mat-drawer-container>

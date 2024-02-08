@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 
 
-interface day {
-  value: string;
-  viewValue: string;
-}
 
 
 @Component({
@@ -13,9 +9,7 @@ interface day {
   styleUrls: ['./timetable.component.css']
 })
 export class TimetableComponent {
-  Days: day[] = [
-    {value: '0', viewValue: 'Steak'},
-    {value: '1', viewValue: 'Pizza'},
-    {value: '2', viewValue: 'Tacos'},
-  ];
+ 
+
+  panelOpenState = false;
 }
