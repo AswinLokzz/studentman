@@ -1,5 +1,5 @@
 <h1 style="text-align: center">TIME TABLE</h1>
-<div [formGroup]="tableform" (submit)="apple()">
+<div [formGroup]="tableform" (submit)="onSubmit()">
   <mat-form-field>
     <mat-label>Select Day</mat-label>
     <mat-select formControlName="Day" required id="daySelect">
@@ -16,14 +16,14 @@
 
   <mat-form-field>
     <mat-label>Select Department</mat-label>
-    <mat-select formControlName="Department" required>
+    <mat-select formControlName="Department" required (selectionChange)="filterTeachersByDepartment($event.value)">
       <mat-option *ngFor="let department of Departments" [value]="department.viewValue">{{ department.viewValue }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Select Semester</mat-label>
-    <mat-select formControlName="Semester" required>
+    <mat-select formControlName="Semester" required (selectionChange)="filteredsubjectsbysemester($event.value)">
       <mat-option *ngFor="let semester of Semesters" [value]="semester.viewValue">{{ semester.viewValue }}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -31,7 +31,13 @@
   <mat-form-field>
     <mat-label>Select Subject</mat-label>
     <mat-select formControlName="Subject" required>
-      <mat-option *ngFor="let subject of Subjects" [value]="subject.viewValue">{{ subject.viewValue }}</mat-option>
+      <mat-option *ngFor="let subject of finalsub" [value]="subject">{{ subject }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Select Teacher</mat-label>
+    <mat-select formControlName="Teacher" required>
+      <mat-option *ngFor="let teacher of filteredTeachers" [value]="teacher.Fullname">{{ teacher.Fullname }}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
@@ -75,6 +81,6 @@
 </div> -->
 
 <div class="example-button-row">
-  <button mat-raised-button color="grey" type="submit" (click)="apple()" >Add TimeTable</button>
+  <button mat-raised-button color="grey" type="submit" (click)="onSubmit()" >Add TimeTable</button>
 </div>
 

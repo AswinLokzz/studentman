@@ -135,6 +135,8 @@ var TeacherFormRouter = require('./routes/teacherform');
 var TeacherListRouter = require('./routes/teacherlist');
 var FeeFormListRouter=require('./routes/feeform')
 var loginrouter=require('./routes/login');
+var timetableRouter=require('./routes/timetable')
+var subjectrouter=require('./routes/subjectdetails')
 
 
 
@@ -188,6 +190,8 @@ app.use("/Teachers/form", TeacherFormRouter);
 app.use("/Teachers/list",TeacherListRouter);
 app.use("/Fees/form",FeeFormListRouter)
 app.use("/login",loginrouter);
+app.use("/timetable",timetableRouter)
+app.use("/subjectable",subjectrouter)
 
 
 
