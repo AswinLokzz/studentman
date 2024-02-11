@@ -1,22 +1,22 @@
 /* studentlist.component.css */
 table {
-    width: 1200px;
+    width: 1100px;
     height: 150px;
     border-collapse: collapse;
     margin-top: 20px;
     align-items: center;
   }
-  
+
   th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
   }
-  
+
   th {
     background-color: #f2f2f2;
   }
-  
+
   button {
     padding: 6px 12px;
     cursor: pointer;
@@ -27,7 +27,7 @@ table {
     text-align: center;
     align-items: center;
   }
-  
+
   button:hover {
     background-color: #45a049;
   }
@@ -39,7 +39,6 @@ table {
     margin-left: 50px;
   }
 
-  .info-text{  
-    text-align: center;  
+  .info-text{
+    text-align: center;
   }
-  

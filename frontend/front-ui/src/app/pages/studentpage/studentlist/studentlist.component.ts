@@ -17,21 +17,21 @@ export class StudentlistComponent implements OnInit,OnDestroy{
     //   {Fullname:"Aswiny",Gender:"Female",Year:"Third",Semester:"S6",District:"Ernakulam",Address:"Thaiparambil House, Thrissur, valapad",Email:"aswint@gmail",Username:"Aswi@2001",Password:"Aswi@2001"},
     //   {Fullname:"Aswin T Sugathan",Gender:"Male",Year:"Fourth",Semester:"S7",District:"Kollam",Address:"Thaiparambil House, valapad",Email:"aswintsugathgmail",Username:"Aswi@2002",Password:"Aswi@2002"}
     // ]
-  
+
   displayedColumns: string[] = ['regNo', 'name', 'semester', 'year', 'view'];
-  
+
 
   viewStudent(student: StudentForm): void {
     // Implement logic to handle the "View" button click
     console.log('View clicked for:', student);
   }
 
-  // StudentService: StudentFormService = new StudentFormService; 
+  // StudentService: StudentFormService = new StudentFormService;
 
   constructor(private StudentService:StudentFormService, private router:Router){
     // this.StudentService=StudentService;
   }
-  
+
    StudentContentData: StudentForm[]=[];
 
   students:StudentForm[]=[]
@@ -58,4 +58,14 @@ export class StudentlistComponent implements OnInit,OnDestroy{
     console.log('Navigating to view with ID:', _id);
     this.router.navigate(['/admin/home/Students/view',_id])
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this['dataSource'].filter = filterValue.trim().toLowerCase();
+
+    if (this['dataSource'].paginator) {
+      this['dataSource'].paginator.firstPage();
+    }
+  }
 }
+

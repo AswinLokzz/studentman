@@ -1,16 +1,17 @@
 .mat-toolbar {
     display: flex;
     justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.781);
   }
-  
+
   .app-name {
     font-size: 1.5em;
   }
-  
+
   .spacer {
     flex: 1.5 1.5 auto;
   }
-  
+
   .active-link {
     background-color: rgb(93, 183, 197)
   }
@@ -32,6 +33,11 @@
 
   .mat-menu:hover{
     background-color: grey;
-    
-    
+
+
+  }
+
+  img{
+    width: 60px;
+    padding: 5px;
   }

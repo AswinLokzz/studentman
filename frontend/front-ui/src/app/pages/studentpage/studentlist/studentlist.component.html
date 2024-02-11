@@ -1,4 +1,8 @@
 <mat-card class="display" multi= "true" *ngIf = "studentlist.length > 0">
+  <!-- <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field> -->
   <!-- studentlist.component.html -->
   <table mat-table [dataSource]="studentlist" class="mat-elevation-z8">
     <!-- Column for Registration Number (Reg No) -->
@@ -32,11 +36,14 @@
         <button mat-button [routerLink]="['/admin/home/Students/view', student._id]">View</button>
       </td>
     </ng-container>
-
+    <!-- <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr> -->
     <!-- Row definition -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
 </mat-card>
 <p class = " info-text mat-body-1" *ngIf = "studentlist.length <= 0">No post added yet!</p>
 

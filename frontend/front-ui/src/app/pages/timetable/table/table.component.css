@@ -24,3 +24,30 @@ caption {
     font-size: 1.5em;
     margin-bottom: 10px;
 } */
+
+#divmain {
+  margin: 0 auto;
+  max-width: 800px; /* Adjust width as needed */
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for the form fields */
+mat-form-field {
+  width: 75%;
+  margin-bottom: 20px;
+}
+
+/* Styles for the submit button */
+.example-button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Center the form heading */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}

@@ -1,21 +1,23 @@
+<div class="form-container">
 <mat-card-content>
   <form (submit)="onSubmit()" [formGroup]="studentForm">
   <div class="form-row">
     <mat-form-field>
       <mat-label>Full Name:</mat-label>
-      
+
       <input matInput type="string"
       formControlName="Fullname"
       required="true"
       >
     </mat-form-field>
+  </div>
 
-    <br />
 
 
+<div class="form-row">
     <mat-form-field>
       <mat-label>Gender:</mat-label>
-     
+
 
       <mat-select type="string"
       formControlName="Gender"
@@ -25,7 +27,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  
+
   <div class="form-row">
     <mat-form-field>
       <mat-label>Department:</mat-label>
@@ -37,11 +39,11 @@
       </mat-select>
     </mat-form-field>
     </div>
-  <br />
+
   <div class="form-row">
     <mat-form-field>
       <mat-label>Year:</mat-label>
-      
+
 
       <mat-select type="string"
       formControlName="Year"
@@ -53,11 +55,11 @@
       </mat-select>
     </mat-form-field>
 
-    <br />
+
 
     <mat-form-field>
       <mat-label>Semester:</mat-label>
-   
+
 
       <mat-select type="string"
       formControlName="Semester"
@@ -73,11 +75,11 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <br />
+
   <div class="form-row">
     <mat-form-field>
       <mat-label>District:</mat-label>
-     
+
 
       <mat-select type="string"
       formControlName="District"
@@ -99,11 +101,11 @@
       </mat-select>
     </mat-form-field>
 
-    <br />
+
 
     <mat-form-field>
       <mat-label>Address</mat-label>
-      <textarea 
+      <textarea
       matInput
       type="string"
       formControlName="Address"
@@ -111,7 +113,7 @@
     </textarea>
     </mat-form-field>
   </div>
-  <br />
+
   <div class="form-row">
     <mat-form-field>
       <mat-label>Enter your email</mat-label>
@@ -125,7 +127,7 @@
       <mat-error *ngIf="studentForm.get('Email')?.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
 
-    <br>
+
 
     <mat-form-field>
       <mat-label>USERNAME:</mat-label>
@@ -136,11 +138,11 @@
       required="true">
     </mat-form-field>
   </div>
-  <br />
+
   <div class="form-row">
     <mat-form-field>
       <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" 
+      <input matInput [type]="hide ? 'password' : 'text'"
       type="string"
       formControlName="Password"
       required="true">
@@ -156,7 +158,6 @@
 
 
 
-      <br />
 
     </mat-form-field>
   </div>
@@ -164,20 +165,20 @@
   <!-- <div class="form-row">
     <mat-label>Upload Image:</mat-label>
     <input type="file" (change)="onFileSelected($event)" accept="image/*">
-    
-      
 
-      
-     
+
+
+
+
     </div>
   <br /> -->
 
-  
+
 
 
   <button  mat-button class="submitbutton" type="submit" (click)="onSubmit()">SUBMIT</button>
 </form>
 </mat-card-content>
-
+</div>
 
 

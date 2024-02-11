@@ -1,6 +1,6 @@
 
 <mat-toolbar color="primary">
-  <span class="app-name">Unidentified Institute of Engineering</span>
+  <span class="app-name"><img src="../../assets/logo.png" alt="" > </span>
   <span class="spacer"></span>
 
   <div>
@@ -9,7 +9,7 @@
       <mat-icon>home</mat-icon>
 
     </button>
-    
+
     <button *ngIf="state=='Student'"  mat-icon-button [routerLink]="'Students/home'" routerLinkActive="active-link">
       <mat-icon>home</mat-icon>
 
@@ -18,7 +18,7 @@
       <mat-icon>home</mat-icon>
 
     </button>
-    
+
     <mat-menu #profileMenu="matMenu">
       <button mat-menu-item (click)="viewProfile()">View Profile</button>
       <button mat-menu-item (click)="logout()">Log Out</button>
@@ -26,20 +26,20 @@
 
     <button mat-icon-button [matMenuTriggerFor]="profileMenu">
       <mat-icon>account_circle</mat-icon>
-  
+
     </button>
-    
+
     <button mat-icon-button [routerLink]="'/contact'" routerLinkActive="active-link">
       <mat-icon>school</mat-icon>
- 
+
     </button>
     <!-- Add more navigation links based on your application -->
-    
+
     <!-- <span class="spacer"></span> -->
-    
-    
+
+
     <!-- <span class="spacer"></span> -->
-    
+
     <!-- <span>{{ currentDate | date: 'medium' }}</span> -->
   </div>
   </mat-toolbar>

@@ -1,57 +1,77 @@
+/* Styles for sidebar card */
 .sidebar-card {
-    margin-bottom: 16px; /* Adjust spacing as needed */
-    height: 85vh;
-    width: 100%;
-    margin-bottom: 0px;
-    margin-top: 40px;
-  }
-  
-  /* .active-link {
-    background-color: rgb(150, 222, 251);
-  } */
-  
-  /* Add any other styling as needed */
-  
-  a{
-    text-decoration: none;
-    color:black
-  
-  }
-  
-  mat-card-header {
-    background-color: black;
-    color: whitesmoke;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    padding: 20px;
-    /* margin: auto; */
-    font-weight: bolder;
-    font-size: larger;
-    letter-spacing: 0.5cap;
-  
-  }
-  
-  button{
-    background-color: aliceblue;
-    color: black;
-    margin: auto;
-    padding: 10px;
-  }
-  
-  mat-card-content{
-    margin: auto;
-    font-size: large;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-  }
-  
-  mat-icon{
-    font-size: 30px;
-    size: 30px;
-  }
-  span{
-    font-size: 30px;
-    size: 30px;
-  }
+  width: 300px; /* Adjust the width as needed */
+  height: calc(93vh - 60px); /* Height from header to footer */
+  background-color: #f0f0f0; /* Background color */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styles for card header */
+mat-card-header {
+  background-color: #007bff; /* Header background color */
+  color: white; /* Header text color */
+}
+
+/* Styles for card title */
+mat-card-title {
+  font-size: 18px; /* Title font size */
+  font-weight: bold; /* Title font weight */
+  padding: 10px; /* Title padding */
+}
+
+/* Styles for card content */
+mat-card-content {
+  flex: 1; /* Fill remaining height */
+  padding: 0 10px; /* Content padding */
+}
+
+/* Styles for buttons */
+button {
+  width: 100%; /* Button width */
+  text-align: left; /* Align text to the left */
+  padding: 10px; /* Button padding */
+  background: none; /* Remove button background */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Set cursor to pointer */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Styles for button icons */
+mat-icon {
+  margin-right: 10px; /* Icon margin */
+}
+
+/* Styles for button label */
+.nav-label {
+  font-size: 16px; /* Label font size */
+}
+.students-list-button {
+  width: 100%; /* Button width */
+  text-align: left; /* Align text to the left */
+  padding: 10px; /* Button padding */
+  background: none; /* Remove button background */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Set cursor to pointer */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.students-list-button:hover {
+  background-color: #d3d3d3; /* Hover background color */
+}
+
+/* Styles for add student button */
+.add-student-button {
+  width: 100%; /* Button width */
+  text-align: left; /* Align text to the left */
+  padding: 10px; /* Button padding */
+  background: none; /* Remove button background */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Set cursor to pointer */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.add-student-button:hover {
+  background-color: #d3d3d3; /* Hover background color */
+}

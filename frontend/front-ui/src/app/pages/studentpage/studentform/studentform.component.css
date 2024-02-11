@@ -1,60 +1,60 @@
-mat-card-content{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin-left: 160%;
-    margin-top: 80px;
-
+/* Styles for form container */
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  max-height: 80vh; /* Limiting height to 80% of viewport height */
+  overflow-y: auto; /* Adding vertical scroll if content exceeds container height */
+  margin-left: 250px;
 }
 
+/* Styles for form rows */
 .form-row {
-    display: flex;
-    margin-bottom: 20px;
-    justify-content: center;/* Optional: Add some spacing between rows */
-  }
-  
-  half-width {
-    width: calc(50% - 8px);
-    margin-right: 16px;
-  }
-  
-  full-width {
-    width: 100%;
-    margin-right: 16px;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 16px;
-    padding: 5px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+/* Styles for mat-form-field */
+mat-form-field {
+  flex: 1 1 calc(50% - 10px); /* Each field takes up half of the width with some margin */
+  margin-right: 20px; /* Adjust the spacing between fields */
+  margin-bottom: 20px; /* Adjust the spacing between rows */
+}
 
-  mat-form-field {
-    font-size: 25px; 
-  }
+/* Styles for mat-label */
+mat-label {
+  font-weight: bold;
+}
+.form-row mat-form-field:last-child {
+  margin-right: 0;
+}
+/* Styles for mat-select */
+mat-select {
+  width: 100%;
+}
 
-  mat-form-field-appearance-fill, mat-form-field-flex {
-    height: 100px; 
-  }
+/* Styles for mat-error */
+mat-error {
+  font-size: 12px;
+  color: red;
+}
 
-  mat-form-field {
-    font-size: 20px; 
-  }
+/* Styles for mat-icon-button */
+mat-icon-button {
+  background: transparent;
+}
 
-  mat-form-field input {
-    width: 200%;
-  }
-  
-  input[type='file']{  
-    visibility: hidden;  
-  }  
+/* Styles for submit button */
+.submitbutton {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  .submitbutton{
-    width: 100px;
-    height: 50px;
-    font-size: 15px;
-    background-color: aqua;
-  }
+.submitbutton:hover {
+  background-color: #0056b3;
+}

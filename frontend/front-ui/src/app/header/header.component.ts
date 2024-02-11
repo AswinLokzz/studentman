@@ -13,14 +13,14 @@ export class HeaderComponent implements OnInit{
   state:any
 
   constructor(private toast:ToastrService, private router:Router){}
-  
+
   ngOnInit(): void {
     this.state=localStorage.getItem("state")
   }
 
   viewProfile() {
     // Implement logic for viewing profile
-    
+
     console.log('View Profile clicked');
   }
 
@@ -30,6 +30,9 @@ export class HeaderComponent implements OnInit{
     this.toast.success("Log out Successful")
     this.router.navigate([''])
   }
-  
+
+  navigateToPage(){
+    this.router.navigate([''])
+  }
 
 }

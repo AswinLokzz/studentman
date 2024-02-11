@@ -32,7 +32,7 @@ interface subject{
 }
 
 @Component({
-  selector: 'table',
+  selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
@@ -43,14 +43,14 @@ export class TableComponent implements OnInit {
   subjects:any[]=[]
   filterbyDepartment:any[]=[]
   filterbySemester:any[]=[]
-  
+
   tableform!:FormGroup
   filteredTeachers: any[] = [];
-  
+
 
   constructor(private teacherlist:TeacherFormService, private fb:FormBuilder, private subjectlist:timetableService){}
 
- 
+
 
   getTeachers(){
     this.teacherlist.getTeacherForm().subscribe({
@@ -61,7 +61,7 @@ export class TableComponent implements OnInit {
         console.log("Error Message",err)
       }
     })
-    
+
   }
 
   getSubjects() {
@@ -100,7 +100,7 @@ export class TableComponent implements OnInit {
         console.log("the needed ones:",this.filterbyDepartment)
       }
     }
-    
+
   }
 
   filteredsubjectsbysemester(semester:string){
@@ -116,17 +116,19 @@ export class TableComponent implements OnInit {
     this.filterbySemester.forEach((element) => {
       console.log(element.Subjects);
       element.Subjects.forEach((item: { Subjects: any; }) => {
-      
+
         this.finalsub=element.Subjects
         console.log("finished:",this.finalsub)
-        
+
       });
     });
   }
 
 
 
-  
+
+
+
 
 
   Days: day[] = [
@@ -168,8 +170,8 @@ export class TableComponent implements OnInit {
     this.getTeachers()
     this.filterTeachersByDepartment
     this.filteredsubjectsbysemester
-    
-    
+
+
   }
 
   initform(){
@@ -179,7 +181,7 @@ export class TableComponent implements OnInit {
     Department:['',Validators.required],
     Semester:['',Validators.required],
     Subject:['',Validators.required],
-    Teacher: ['', Validators.required] 
+    Teacher: ['', Validators.required]
    })
   }
 
