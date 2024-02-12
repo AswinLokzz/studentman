@@ -1,4 +1,4 @@
-/* table {
+table {
     border-collapse: collapse;
     width: 80%;
     margin: 50px auto;
@@ -23,7 +23,7 @@ caption {
     caption-side: top;
     font-size: 1.5em;
     margin-bottom: 10px;
-} */
+}
 
 #divmain {
   margin: 0 auto;

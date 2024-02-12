@@ -1,3 +1,4 @@
+
 const subjectdetialitems=require('../models/timetable/subjectdetails.model')
 
 const postSubjectDetails= async(req,res)=>{
@@ -21,4 +22,15 @@ const postSubjectDetails= async(req,res)=>{
   }
 }
 
-module.exports={postSubjectDetails}
+const getSubjectDetails = async (req, res) => {
+  try {
+    const subjectdetails = await subjectdetialitems.find();
+    res.status(200).json({ message: "Data obtained successfully", data: subjectdetails });
+    console.log(subjectdetails); // Corrected to log subjectdetails instead of data
+  } catch (error) {
+    console.error('Error fetching subject details:', error.message);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+module.exports={postSubjectDetails, getSubjectDetails}

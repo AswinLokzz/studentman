@@ -1,70 +1,95 @@
-mat-card-content {
-    border: 10px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin-left: 160%;
-    margin-top: 80px;
-
+.mat-card-content {
+  max-width: 500px; /* Adjust according to your layout */
+  margin: 0 auto; /* Center the form horizontally */
+  font-family: 'Arial', sans-serif; /* Change to your preferred font */
+  height: 400px; /* Set a fixed height for the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+.mat-card-content > :last-child {
+  margin-bottom: 0;
 }
 
 .form-row {
-    display: flex;
-    margin-bottom: 20px;
-    justify-content: center;/* Optional: Add some spacing between rows */
-  }
-  
-  half-width {
-    width: calc(50% - 8px);
-    margin-right: 16px;
-  }
-  
-  full-width {
-    width: 100%;
-    margin-right: 16px;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 16px;
-    padding: 5px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
 
-  mat-form-field {
-    font-size: 25px; 
-  }
+.mat-form-field {
+  width: calc(50% - 8px); /* Adjust based on your layout */
+}
 
-  mat-form-field-appearance-fill, mat-form-field-flex {
-    height: 100px; 
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
 
-  mat-form-field {
-    font-size: 20px; 
-  }
+th, td {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
 
-  mat-form-field input {
-    width: 200%;
-  }
-  
-  /* input[type='file']{  
-    visibility: hidden;  
-  }   */
+th {
+  background-color: #f2f2f2;
+}
 
-  .submitbutton{
-    width: 100px;
-    height: 50px;
-    font-size: 15px;
-    background-color: aqua;
-  }
+.confirmbutton, .submitbutton {
+  margin-bottom: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-  .image-preview {
-    margin-top: 10px;
-  }
-  
-  .image-preview img {
-    max-width: 100%;
-    max-height: 200px; /* Adjust as needed */
-  }
+.confirmbutton:hover, .submitbutton:hover {
+  background-color: #0056b3;
+}
+
+.mat-error {
+  color: #dc3545; /* Error message color */
+}
+
+.mat-label {
+  color: #333; /* Label color */
+}
+
+.image-preview {
+  margin-top: 12px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 6px;
+}
+
+/* Input styling */
+.mat-form-field-wrapper {
+  font-size: 16px;
+}
+
+.mat-input-element {
+  color: #333; /* Input text color */
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: #666; /* Placeholder color */
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: #007bff; /* Input underline color */
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+  background-color: #ccc; /* Disabled input underline color */
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-invalid .mat-form-field-underline {
+  background-color: #dc3545; /* Invalid input underline color */
+}

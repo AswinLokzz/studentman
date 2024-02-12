@@ -1,5 +1,5 @@
 <h1 style="text-align: center">TIME TABLE</h1>
-<div [formGroup]="tableform" (submit)="onSubmit()">
+<div [formGroup]="tableform" (submit)="onSubmit()" >
   <mat-form-field>
     <mat-label>Select Day</mat-label>
     <mat-select formControlName="Day" required id="daySelect">
@@ -44,7 +44,7 @@
 
 
 
-<!-- <div class="timetable">
+<div class="timetable">
   <table>
     <caption>
       Timetable
@@ -78,7 +78,7 @@
       </tr>
     </tbody>
   </table>
-</div> -->
+</div>
 
 <div class="example-button-row">
   <button mat-raised-button color="grey" type="submit" (click)="onSubmit()" >Add TimeTable</button>

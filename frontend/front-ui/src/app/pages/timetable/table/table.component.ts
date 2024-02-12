@@ -3,6 +3,7 @@ import { TeacherFormService } from 'src/app/services/teacherform.service';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { timetableService } from 'src/app/services/timetable.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -40,15 +41,22 @@ export class TableComponent implements OnInit {
 
   teachers:any[]=[]
   finalsub:any[]=[]
+  show!:boolean
+  shown!:boolean
+
   subjects:any[]=[]
+  availableteachers:any[]=[]
   filterbyDepartment:any[]=[]
   filterbySemester:any[]=[]
-
+  text!:string
   tableform!:FormGroup
   filteredTeachers: any[] = [];
+  newfilteredTeachers: any[] = [];
+
+  newtimetable:any[]=[]
 
 
-  constructor(private teacherlist:TeacherFormService, private fb:FormBuilder, private subjectlist:timetableService){}
+  constructor(private teacherlist:TeacherFormService, private fb:FormBuilder, private subjectlist:timetableService, private toaster:ToastrService){}
 
 
 
@@ -62,6 +70,19 @@ export class TableComponent implements OnInit {
       }
     })
 
+  }
+
+  getSubjectdetails(){
+    this.subjectlist.viewSubject().subscribe({
+      next:(res:any)=>{
+        this.newtimetable=res.data
+        console.log(this.newtimetable)
+      
+      },
+      error:(err:any)=>{
+        console.log("Error Message",err)
+      }
+    })
   }
 
   getSubjects() {
@@ -90,8 +111,8 @@ export class TableComponent implements OnInit {
       console.log("teacher",teacher)
       if (teacher.Department ===department) {
         this.filteredTeachers.push(teacher);
-
       }
+
     }
     for(let subject of this.subjects){
       console.log("subject",subject)
@@ -168,9 +189,11 @@ export class TableComponent implements OnInit {
     this.initform()
     this.getSubjects()
     this.getTeachers()
+    this.getSubjectdetails()
     this.filterTeachersByDepartment
     this.filteredsubjectsbysemester
-
+    this.show=true
+    this.shown=true
 
   }
 
@@ -185,20 +208,69 @@ export class TableComponent implements OnInit {
    })
   }
 
-  apple(){
-    console.log("---->",this.tableform)
-    this.getTeachers()
-    console.log("teachers",this.teachers)
-    console.log("filetered teachers", this.filteredTeachers)
-  }
+
 
   submitting = false;
 
   onSubmit():void {
-    if (this.submitting || this.tableform.invalid) {
+    console.log("newtimetabvle" , this.newtimetable)
+    console.log("table", this.tableform.value)
+   
+    this.newtimetable = this.newtimetable.filter((item) => {
+      if (
+        (item.Teacher === this.tableform.value.Teacher &&
+        item.Department === this.tableform.value.Department &&
+        item.Day === this.tableform.value.Day &&
+        item.Hour === this.tableform.value.Hour) 
+      ) {
+        this.text = 'Teacher has already been assigned to this hour';
+        this.show = false;
+         
+      }
+ 
+    });
+    
+    this.newtimetable = this.newtimetable.filter((item: any) => {
+      if (
+        this.tableform.value.Fullname === item.Fullname &&
+        this.tableform.value.Day === item.Day &&
+        this.tableform.value.Hour === item.Hour
+      ) {
+        this.text = 'Teacher has already been assigned to this hour';
+        this.shown = false;
+      }
+
+    });
+    
+    // this.newtimetable = this.newtimetable.filter((item) => {
+    //   if (
+    //     this.tableform.value.Fullname === item.Fullname &&
+    //     this.tableform.value.Subject === item.Subject
+    //   ) {
+    //     this.text = 'Teacher has already been assigned to this hour';
+    //     this.show = false;
+    //     return false; 
+    //   }
+    //   return true; 
+    // });
+    
+    if (this.show === false) {
+      this.toaster.error(this.text);
+      this.show=true
+      return;
+    }
+    if (this.shown === false) {
+      this.toaster.error(this.text);
+      this.show=true
       return;
     }
 
+
+ 
+    if (this.submitting || this.tableform.invalid) {
+      return;
+    }
+    
     this.submitting = true;
     console.log("form", this.tableform)
     this.subjectlist.addSubject(this.tableform).subscribe({
@@ -206,6 +278,10 @@ export class TableComponent implements OnInit {
         console.log('Data from service:', data);
         console.log('Form Values:', this.tableform.value);
         this.submitting = false;
+        this.show=true
+        this.shown=true
+        this.toaster.success("the subject has been added")
+        this.getSubjectdetails()
       },
       error: (error: any) => {
         console.error('Error from service:', error);
@@ -213,5 +289,6 @@ export class TableComponent implements OnInit {
       },
     });
   }
-  }
+    
+}
 
