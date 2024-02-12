@@ -12,24 +12,24 @@
             <mat-panel-title> CS </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="d-flex">
-          <mat-card class="contain">
-            <mat-card-content class="sem">
-              <h6>S1</h6>
+          <mat-card class="contain" (click)="getValue(card1)">
+            <mat-card-content class="sem" >
+              <h6 #card1>S1</h6>
             </mat-card-content>
           </mat-card>
-          <mat-card class="contain">
+          <mat-card class="contain" (click)="getValue(card2)">
             <mat-card-content class="sem">
-              <h6>S3</h6>
+              <h6 #card2>S3</h6>
             </mat-card-content>
           </mat-card>
-          <mat-card class="contain">
+          <mat-card class="contain" (click)="getValue(card3)">
             <mat-card-content class="sem">
-              <h6>S5</h6>
+              <h6 #card3>S5</h6>
             </mat-card-content>
           </mat-card>
-          <mat-card class="contain">
+          <mat-card class="contain" (click)="getValue(card4)">
             <mat-card-content class="sem">
-              <h6>S7</h6>
+              <h6 #card4>S7</h6>
             </mat-card-content>
           </mat-card>
         </div>

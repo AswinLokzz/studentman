@@ -4,6 +4,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { timetableService } from 'src/app/services/timetable.service';
 import { ToastrService } from 'ngx-toastr';
+import { ClasssettingService } from 'src/app/services/classsetting.service';
 
 
 
@@ -37,13 +38,14 @@ interface subject{
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit,DoCheck {
 
   teachers:any[]=[]
   finalsub:any[]=[]
   show!:boolean
   shown!:boolean
-
+  class:string=''
+  showclass:boolean=false
   subjects:any[]=[]
   availableteachers:any[]=[]
   filterbyDepartment:any[]=[]
@@ -52,11 +54,13 @@ export class TableComponent implements OnInit {
   tableform!:FormGroup
   filteredTeachers: any[] = [];
   newfilteredTeachers: any[] = [];
-
+  mon:any[]=[]
+  tue:any[]=[]
+  wed:any[]=[]
   newtimetable:any[]=[]
+  ntimetable:any[]=[]
 
-
-  constructor(private teacherlist:TeacherFormService, private fb:FormBuilder, private subjectlist:timetableService, private toaster:ToastrService){}
+  constructor(private teacherlist:TeacherFormService, private fb:FormBuilder, private subjectlist:timetableService, private toaster:ToastrService, private nclass:ClasssettingService){}
 
 
 
@@ -77,7 +81,7 @@ export class TableComponent implements OnInit {
       next:(res:any)=>{
         this.newtimetable=res.data
         console.log(this.newtimetable)
-      
+
       },
       error:(err:any)=>{
         console.log("Error Message",err)
@@ -194,6 +198,20 @@ export class TableComponent implements OnInit {
     this.filteredsubjectsbysemester
     this.show=true
     this.shown=true
+    this.showclass=false
+
+  }
+
+  ngDoCheck(): void {
+    this.class=this.nclass.getClass()
+
+    if(this.class.length>1){
+      this.showclass=!this.showclass
+    }
+    this.ntimetable=this.newtimetable.filter((item:any)=>{
+      return item.Semester==this.class
+    })
+
 
   }
 
@@ -215,21 +233,21 @@ export class TableComponent implements OnInit {
   onSubmit():void {
     console.log("newtimetabvle" , this.newtimetable)
     console.log("table", this.tableform.value)
-   
+
     this.newtimetable = this.newtimetable.filter((item) => {
       if (
         (item.Teacher === this.tableform.value.Teacher &&
         item.Department === this.tableform.value.Department &&
         item.Day === this.tableform.value.Day &&
-        item.Hour === this.tableform.value.Hour) 
+        item.Hour === this.tableform.value.Hour)
       ) {
         this.text = 'Teacher has already been assigned to this hour';
         this.show = false;
-         
+
       }
- 
+
     });
-    
+
     this.newtimetable = this.newtimetable.filter((item: any) => {
       if (
         this.tableform.value.Fullname === item.Fullname &&
@@ -241,7 +259,7 @@ export class TableComponent implements OnInit {
       }
 
     });
-    
+
     // this.newtimetable = this.newtimetable.filter((item) => {
     //   if (
     //     this.tableform.value.Fullname === item.Fullname &&
@@ -249,11 +267,11 @@ export class TableComponent implements OnInit {
     //   ) {
     //     this.text = 'Teacher has already been assigned to this hour';
     //     this.show = false;
-    //     return false; 
+    //     return false;
     //   }
-    //   return true; 
+    //   return true;
     // });
-    
+
     if (this.show === false) {
       this.toaster.error(this.text);
       this.show=true
@@ -266,11 +284,11 @@ export class TableComponent implements OnInit {
     }
 
 
- 
+
     if (this.submitting || this.tableform.invalid) {
       return;
     }
-    
+
     this.submitting = true;
     console.log("form", this.tableform)
     this.subjectlist.addSubject(this.tableform).subscribe({
@@ -289,6 +307,6 @@ export class TableComponent implements OnInit {
       },
     });
   }
-    
+
 }
 

@@ -8,7 +8,10 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class timetableService {
-  
+
+
+  class!:string
+
   private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
@@ -34,4 +37,7 @@ export class timetableService {
   viewSubject(): Observable<any> {
     return this.http.get(`${this.apiUrl}/subjectable`)
   }
+
+
+
 }

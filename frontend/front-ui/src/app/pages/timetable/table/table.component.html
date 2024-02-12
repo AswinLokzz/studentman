@@ -1,3 +1,4 @@
+<ng-container *ngIf="!showclass">
 <h1 style="text-align: center">TIME TABLE</h1>
 <div [formGroup]="tableform" (submit)="onSubmit()" >
   <mat-form-field>
@@ -41,10 +42,12 @@
     </mat-select>
   </mat-form-field>
 </div>
+<div class="example-button-row">
+  <button mat-raised-button color="grey" type="submit" (click)="onSubmit()" >Add TimeTable</button>
+</div>
+</ng-container>
 
-
-
-<div class="timetable">
+<div class="timetable" *ngIf="showclass">
   <table>
     <caption>
       Timetable
@@ -58,29 +61,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <!-- <tr *ngFor="let i of newtimetable">
         <td><b>Monday</b></td>
-        <td>Eng</td>
-        <td>Mat</td>
-        <td>Che</td>
-      </tr>
-      <tr>
-        <td><b>Tuesday</b></td>
-        <td>Eng</td>
-        <td>Che</td>
-        <td>Mat</td>
-      </tr>
-      <tr>
-        <td><b>Wednesday</b></td>
-        <td>Mat</td>
-        <td>phy</td>
-        <td>Eng</td>
-      </tr>
+        <td>{{i}}</td>
+
+      </tr> -->
     </tbody>
   </table>
 </div>
 
-<div class="example-button-row">
-  <button mat-raised-button color="grey" type="submit" (click)="onSubmit()" >Add TimeTable</button>
-</div>
+
 

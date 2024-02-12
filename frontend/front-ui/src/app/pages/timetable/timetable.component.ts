@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ClasssettingService } from 'src/app/services/classsetting.service';
 
 
 
@@ -9,7 +10,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./timetable.component.css']
 })
 export class TimetableComponent {
- 
+  value:any
+  constructor(private nclass:ClasssettingService){}
+
 
   panelOpenState = false;
+
+  getValue(card: HTMLHeadingElement) {
+    this.value = card.textContent;
+    this.nclass.setClass(this.value)
+  }
 }
