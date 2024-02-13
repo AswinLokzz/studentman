@@ -18,6 +18,7 @@ import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
 import { StudenttimetableComponent } from './pages/studentside/studenttimetable/studenttimetable.component';
 import { TeachertimetableComponent } from './pages/teacherside/teachertimetable/teachertimetable.component';
+import { TeacherstudentattendanceComponent } from './pages/teacherside/teacherstudentattendance/teacherstudentattendance.component';
 
 const routes: Routes = [
   { path: '', component: LoginpageComponent },
@@ -50,7 +51,7 @@ const routes: Routes = [
     component: TeacherpageComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
-      
+
       { path: 'list', component: TeacherlistComponent},
       { path: 'form', component: TeacherformComponent },
       {path:'view/:_id',component:TeacherviewComponent},
@@ -76,8 +77,9 @@ const routes: Routes = [
       },
       { path: 'Teachers/home', component: HomeComponent },
       { path: 'Teachers/timetable', component: TeachertimetableComponent },
+      { path: 'Teachers/students', component: TeacherstudentattendanceComponent },
     ];
-    
+
     @NgModule({
       imports: [RouterModule.forRoot(routes)],
       exports: [RouterModule],

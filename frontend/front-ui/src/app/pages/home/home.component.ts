@@ -54,13 +54,13 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/admin/home/Teachers']);
         break;
       case 'Fees':
-        this.router.navigate(['/admin/home/Fees'])  
+        this.router.navigate(['/admin/home/Fees'])
         break;
       case 'Timetable':
-        this.router.navigate(['/admin/home/Timetables'])  
+        this.router.navigate(['/admin/home/Timetables'])
         break;
       case 'Subjects':
-        this.router.navigate(['/admin/home/Subjects'])  
+        this.router.navigate(['/admin/home/Subjects'])
         break;
       // Add more cases for other pages if needed
       default:
@@ -72,10 +72,10 @@ export class HomeComponent implements OnInit {
   navigateToTeacherPage(pageName: string) {
     switch (pageName) {
       case 'Students':
-        this.router.navigate(['Teachers/Students']);
+        this.router.navigate(['Teachers/students']);
         break;
       case 'Timetable':
-        this.router.navigate(['Teachers/timetable'])  
+        this.router.navigate(['Teachers/timetable'])
         break;
       // Add more cases for other pages if needed
       default:
@@ -88,13 +88,13 @@ export class HomeComponent implements OnInit {
   navigateToStudentPage(pageName: string) {
     switch (pageName) {
       case 'Fees':
-        this.router.navigate(['Students/Fees'])  
+        this.router.navigate(['Students/Fees'])
         break;
       case 'Timetable':
-        this.router.navigate(['Students/timetable'])  
+        this.router.navigate(['Students/timetable'])
         break;
       case 'Subjects':
-        this.router.navigate(['Students/Subjects'])  
+        this.router.navigate(['Students/Subjects'])
         break;
       // Add more cases for other pages if needed
       default:

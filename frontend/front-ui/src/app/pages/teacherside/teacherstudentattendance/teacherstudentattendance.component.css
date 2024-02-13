@@ -1,0 +1,73 @@
+.example-container {
+  display: flex;
+  height: 85vh;
+  background-color: #f0f0f0;
+}
+
+mat-drawer {
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+}
+.mat-drawer-content{
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+.container {
+  padding: 0;
+}
+
+.container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.options {
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s; /* Smooth transition for background color change */
+}
+
+.options:hover {
+  background-color: #3f95dc; /* Light gray color on hover */
+}
+
+.addition {
+  padding: 20px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure the table container occupies the entire height */
+}
+
+.mat-table {
+  /* width: calc(100% - 1200px); Adjusted width to account for drawer width */
+  max-width: 1200px; /* Fixed maximum width */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #777;
+}
+
+table{
+  justify-content: center;
+  align-items: center;
+  width: 1400px;
+}
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

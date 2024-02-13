@@ -58,6 +58,7 @@ import { AuthInterceptor } from './services/auth-interceptor';
 import { TableComponent } from './pages/timetable/table/table.component';
 import { StudenttimetableComponent } from './pages/studentside/studenttimetable/studenttimetable.component';
 import { TeachertimetableComponent } from './pages/teacherside/teachertimetable/teachertimetable.component';
+import { TeacherstudentattendanceComponent } from './pages/teacherside/teacherstudentattendance/teacherstudentattendance.component';
 
 
 
@@ -91,7 +92,8 @@ import { TeachertimetableComponent } from './pages/teacherside/teachertimetable/
     FeesideComponent,
     TableComponent,
     StudenttimetableComponent,
-    TeachertimetableComponent
+    TeachertimetableComponent,
+    TeacherstudentattendanceComponent
   
     
   ],
