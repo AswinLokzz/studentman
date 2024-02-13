@@ -47,7 +47,7 @@
 </div>
 </ng-container>
 
-<div class="timetable" *ngIf="showclass">
+<div class="timetable" *ngIf="showclass && ntimetable.length>1">
   <table>
     <caption>
       Timetable
@@ -61,14 +61,32 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <tr *ngFor="let i of newtimetable">
+      <tr >
         <td><b>Monday</b></td>
-        <td>{{i}}</td>
-
-      </tr> -->
+        
+        <td  *ngFor="let i of mon">{{i.subject}}</td>
+        
+  
+      </tr>
+      <tr >
+        <td><b>Tuesday</b></td>
+        <td *ngFor="let i of tue">{{i.subject}}</td>
+  
+  
+      </tr>
+      <tr >
+        <td><b>Wednesday</b></td>
+        <td *ngFor="let i of wed">{{i.subject}}</td>
+  
+  
+      </tr>
     </tbody>
   </table>
 </div>
 
+
+<div *ngIf="showclass && ntimetable.length<=0">
+   <h3 class="ms-4 mt-5">You have not added any time table yet</h3>
+</div>
 
 

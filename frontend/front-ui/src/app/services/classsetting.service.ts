@@ -15,4 +15,8 @@ export class ClasssettingService {
   getClass(){
     return this.class
   }
+
+  resetClass(){
+    this.class=''
+  }
 }

@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['Teachers/Students']);
         break;
       case 'Timetable':
-        this.router.navigate(['Teachers/Timetables'])  
+        this.router.navigate(['Teachers/timetable'])  
         break;
       // Add more cases for other pages if needed
       default:
@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['Students/Fees'])  
         break;
       case 'Timetable':
-        this.router.navigate(['Students/Timetables'])  
+        this.router.navigate(['Students/timetable'])  
         break;
       case 'Subjects':
         this.router.navigate(['Students/Subjects'])  

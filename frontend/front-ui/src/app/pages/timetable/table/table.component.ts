@@ -199,18 +199,49 @@ export class TableComponent implements OnInit,DoCheck {
     this.show=true
     this.shown=true
     this.showclass=false
-
+  
   }
 
   ngDoCheck(): void {
+    this.mon=[]
+    this.tue=[]
+    this.wed=[]
     this.class=this.nclass.getClass()
-
+    console.log("class", this.class)
     if(this.class.length>1){
       this.showclass=!this.showclass
+    }
+    else if(this.class.length<=0){
+      this.showclass=false
     }
     this.ntimetable=this.newtimetable.filter((item:any)=>{
       return item.Semester==this.class
     })
+    console.log("timetable", this.ntimetable)
+     
+    this.newtimetable.filter((item:any)=>{
+      if(item.Day=='Monday'){
+        this.mon.push({sem:item.Semester,
+          subject:item.Subject})
+      }
+      else if(item.Day==='Tuesday'){
+        this.tue.push(item.Subject)
+      }
+      else{
+        this.wed.push(item.Subject)
+      }
+      console.log("monday",this.mon)
+      this.mon=this.mon.filter((item:any)=>{
+        return item.sem==this.class
+      })
+      this.tue=this.mon.filter((item:any)=>{
+        return item.sem==this.class
+      })
+      this.wed=this.mon.filter((item:any)=>{
+        return item.sem==this.class
+      })
+    })
+
 
 
   }

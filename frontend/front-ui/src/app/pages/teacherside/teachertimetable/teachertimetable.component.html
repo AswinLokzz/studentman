@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-content>
+      <div class="timetable">
+        <table>
+          <caption>
+            Timetable
+          </caption>
+          <thead>
+            <tr>
+              <th>Day/Period</th>
+              <th>I<br />9:30-10:20</th>
+              <th>II<br />10:20-11:10</th>
+              <th>III<br />11:10-12:00</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Monday</b></td>
+  
+              <td *ngFor="let i of mon">{{ i }}</td>
+            </tr>
+            <tr>
+              <td><b>Tuesday</b></td>
+              <td *ngFor="let i of tue">{{ i }}</td>
+            </tr>
+            <tr>
+              <td><b>Wednesday</b></td>
+              <td *ngFor="let i of wed">{{ i }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

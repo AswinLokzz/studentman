@@ -16,6 +16,8 @@ import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { FeesideComponent } from './pages/studentside/feeside/feeside.component';
+import { StudenttimetableComponent } from './pages/studentside/studenttimetable/studenttimetable.component';
+import { TeachertimetableComponent } from './pages/teacherside/teachertimetable/teachertimetable.component';
 
 const routes: Routes = [
   { path: '', component: LoginpageComponent },
@@ -24,6 +26,13 @@ const routes: Routes = [
     path:'Students/Fees',
     component:FeesideComponent
   },
+  {
+    path:'Students/timetable',
+    component:StudenttimetableComponent
+  },
+
+
+
   {path:'admin/home', component:HomeComponent},
   {
     path: 'admin/home/Students',
@@ -66,6 +75,7 @@ const routes: Routes = [
         component:SubjectsComponent
       },
       { path: 'Teachers/home', component: HomeComponent },
+      { path: 'Teachers/timetable', component: TeachertimetableComponent },
     ];
     
     @NgModule({

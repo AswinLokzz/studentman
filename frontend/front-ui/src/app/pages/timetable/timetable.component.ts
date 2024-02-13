@@ -11,7 +11,7 @@ import { ClasssettingService } from 'src/app/services/classsetting.service';
 })
 export class TimetableComponent {
   value:any
-  constructor(private nclass:ClasssettingService){}
+  constructor(public nclass:ClasssettingService){}
 
 
   panelOpenState = false;
