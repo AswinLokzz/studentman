@@ -1,31 +1,75 @@
-.table-container {
+mat-card-content {
+  border: 1px solid #ccc;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
   align-items: center;
-  height: 100vh; /* Adjust the height as needed */
+  text-align: center;
+  justify-content: flex-start;
+  margin: 20px auto;
+  max-width: 1800px;
+  max-height: 800px;
+  overflow-y: auto;
+  background-color: rgba(210, 234, 255, 0.548);
+  margin-left: 350px;
+  margin-top: 150px;
+  width: 1000px;
 }
 
-.table {
-  width: 80%; /* Adjust the width as needed */
-  border-collapse: collapse;
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  margin-right: 5px;
+}
+
+.half-width {
+  width: calc(50% - 10px);
+  margin-right: 10px;
+}
+
+.full-width {
+  width: 1750px;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: calc(50% - 10px); /* Adjusting width */
+  margin-bottom: 16px;
+  margin-right: 5px;
+}
+
+mat-form-field input,
+mat-form-field select {
+  font-size: 16px;
+  width: 100%; /* Ensuring each form field has the same width */
+}
+
+.submitbutton {
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+  background-color: aqua;
   margin-top: 20px;
 }
 
-.table th,
-.table td {
-  border: 1px solid #ccc;
-  padding: 10px;
+input[type='file'] {
+  font-size: 16px;
 }
 
-.table th {
-  background-color: #f2f2f2;
-  color: #333;
+.image-preview {
+  margin-top: 20px;
 }
 
-.table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+.image-preview img {
+  max-width: 100%;
+  max-height: 200px;
 }
 
-.table tbody tr:hover {
-  background-color: #e0e0e0;
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }

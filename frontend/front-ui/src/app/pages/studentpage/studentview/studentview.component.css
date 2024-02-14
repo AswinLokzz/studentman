@@ -52,5 +52,6 @@ label {
 }
 
 .container-xl {
-  width: 700px;
+  width: 900px;
+  margin-left: 200px;
 }

@@ -7,19 +7,26 @@
   align-items: center;
   justify-items: center;
   margin: auto;
-
+  margin-top: 10px;
+  background-color: rgba(240, 248, 255, 0.573);
+  width: 95%;
+  height: 800px;
+  
 }
 
 .card {
   display: flex;
-  margin: 10px;
+  margin: 5px;
   padding: 10px;
+  justify-content: space-evenly;
+  box-sizing: border-box; 
   text-align: center;
   background-color: #f0f0f0;
   border-radius: 8px;
   transition: all 0.3s ease;
-  width: 300px;
-  margin: 20px;
+  width: 240px;
+  margin: 15px;
+  
 }
 
 .card-content {
@@ -47,5 +54,44 @@
   transform: scale(1.05);
   opacity: 0.9;
   border: 1px solid rgb(183, 237, 255)
+}
+
+.heading{
+  margin-bottom: -300px;
+}
+
+.table{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: -700px;
+  /* margin-right: -200px; */
+  margin-left: 350px;
+  /* margin-bottom: 700px; */
+}
+
+h1 {
+  font-size: 1.5em; /* Adjust font size as needed */
+  font-weight: bold; /* or normal, depending on your preference */
+  color: #333; /* Adjust color to fit your design */
+  /* margin-top: 20px; Adjust spacing as needed */
+  /* margin-bottom: 500px; Adjust spacing as needed */
+  letter-spacing: 8px; /* Adjust letter spacing as needed */
+  background-color: #c8f6fadd; /* Adjust background color to fit your design */
+  padding: 5px 10px; /* Adjust padding as needed */
+  border-radius: 5px; /* Optional: Adds rounded corners */
+  word-spacing: 12px;
+  position: relative;
+  margin-top: -340px;
+  width: 115vh;
+  margin-left: 425px;
+  margin-right: -1350px;
+}
+
+.image{
+ width: 62%;
+ margin-top: 7px;
+ margin-left: -380px;
 }
 

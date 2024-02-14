@@ -1,20 +1,100 @@
-<div class="table-container">
-  <table class="table" *ngIf="teacherarr.length > 0">
-    <thead>
-      <tr>
-        <th scope="col">SNo</th>
-        <th scope="col">Year</th>
-        <th scope="col">Semester</th>
-        <th scope="col">Subject</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let arr of teacherarr, let i=index">
-        <td>{{i+1}}</td>
-        <td>{{arr.Year}}</td>
-        <td>{{arr.Semester}}</td>
-        <td>{{arr.Subject}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<mat-card-content>
+  <form (submit)="submitForm()" [formGroup]="teacherform">
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Full Name:</mat-label>
+        <input matInput type="text" formControlName="Fullname" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Gender:</mat-label>
+        <mat-select formControlName="Gender" required>
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+   
+
+    <!-- <div class="form-row">
+     
+      </div> -->
+      
+
+    <!-- <div class="form-row">
+      <mat-form-field>
+        <mat-label>Year:</mat-label>
+        <mat-select formControlName="Year" required>
+          <mat-option value="First">First</mat-option>
+          <mat-option value="Second">Second</mat-option>
+          <mat-option value="Third">Third</mat-option>
+          <mat-option value="Fourth">Fourth</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Semester:</mat-label>
+        <mat-select formControlName="Semester" required>
+          <mat-option *ngFor="let sem of semesterOptions" [value]="sem">{{ sem }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+   
+
+  
+
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input type="email" matInput placeholder="pat@example.com" formControlName="Email" required>
+        <mat-error *ngIf="teacherform.get('Email')?.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>USERNAME:</mat-label>
+        <input matInput type="text" formControlName="Username" required>
+      </mat-form-field>
+    </div>
+    
+
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Department:</mat-label>
+        <mat-select formControlName="Department" required>
+          <mat-option value="EC">EC</mat-option>
+          <mat-option value="EEE">EEE</mat-option>
+          <mat-option value="ME">ME</mat-option>
+          <mat-option value="CS">CS</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    
+    <div class="form-row">
+      <mat-label>Upload Image:</mat-label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+      
+        
+
+        
+       
+      </div>
+    
+    <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+    <div *ngIf="selectedFile" class="image-preview">
+      <img [src]="imagePreview" alt="Image Preview">
+    </div>
+
+
+    
+
+    <button mat-button class="submitbutton" type="submit">SUBMIT</button>
+  </form>
+</mat-card-content>

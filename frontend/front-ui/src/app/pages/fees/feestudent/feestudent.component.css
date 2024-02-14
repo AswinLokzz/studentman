@@ -10,7 +10,8 @@
   margin-left: 400px;} */
 
   table {
-    width: 50%;
+    width: 100%;
+    height: 70%;
   }
 
   tr.example-detail-row {
@@ -61,5 +62,8 @@
     width: 100%;
   }
 
+  .everything{
+    background-color: #efefef;
+  }
 
 

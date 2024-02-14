@@ -1,4 +1,5 @@
 
+<div class="everything">
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
@@ -91,4 +92,5 @@ aria-label="Select page of periodic elements">
 </mat-paginator>
 <button mat-raised-button color="primary" (click)="assignToAll()" [disabled]="!isAssignToAllActive()">Assign To All</button>
 
+</div>
 </div>
