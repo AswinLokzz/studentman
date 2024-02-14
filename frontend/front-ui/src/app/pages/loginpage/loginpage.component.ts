@@ -34,6 +34,7 @@ export class LoginpageComponent implements OnInit {
     if (this.submitting || this.loginform.invalid) {
       return;
     }
+    this.token=''
     this.submitting = true;
     console.log("form", this.loginform);
     this.service.loginAction(this.loginform).subscribe({
