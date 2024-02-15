@@ -15,7 +15,9 @@
 }
 
 .card {
+  
   display: flex;
+  flex-wrap: wrap;
   margin: 5px;
   padding: 10px;
   justify-content: space-evenly;
@@ -65,9 +67,9 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
-  margin-top: -700px;
+  margin-top: -1100px;
   /* margin-right: -200px; */
-  margin-left: 350px;
+  margin-left: 700px;
   /* margin-bottom: 700px; */
 }
 
@@ -91,7 +93,50 @@ h1 {
 
 .image{
  width: 62%;
- margin-top: 7px;
+ margin-top: 15px;
  margin-left: -380px;
 }
+
+.example-card {
+  max-width: 400px;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  margin-top: -350px;
+  margin-left: 500px;
+  width: 1000px;
+  padding: 30px;
+}
+
+h3{
+  align-items: center;
+  font-style: italic
+
+}
+
+h5{
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  font-style: italic;
+}
+
+.example-card2 {
+  max-width: 400px;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  margin-top: -270px;
+  margin-left: 1050px;
+  width: 1500px;
+  padding: 40px;
+ 
+}
+
+.container{
+  background-color: rgb(225, 42, 42);
+}
+
+
+
 

@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   constructor(private contentService: HomeContentService, private router: Router) {}
 
   ngOnInit(): void {
+    
      this.studentFlag = false
      this.teacherFlag = false
      this.adminFlag = false

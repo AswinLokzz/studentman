@@ -1,7 +1,7 @@
 .example-container {
   display: flex;
-  height: 85vh;
-  background-color: #f0f0f0;
+  height: 90vh;
+  background-color: #f0f0f0d2;
 }
 
 mat-drawer {
@@ -9,10 +9,17 @@ mat-drawer {
   background-color: #333;
   color: #fff;
 }
+mat-drawer-content{
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-left: 200px;
+}
 .mat-drawer-content{
   align-items: center;
   justify-content: center;
   justify-items: center;
+  margin-left: 200px;
 }
 .container {
   padding: 0;
@@ -70,4 +77,12 @@ table{
 
 td, th {
   width: 25%;
+}
+
+.move{
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-left: 150px;
+  margin-top: 10px;
 }

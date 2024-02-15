@@ -3,6 +3,8 @@ table {
     width: 80%;
     margin: 50px auto;
     border: 2px solid #333;
+    margin-top: 200px;
+    background-color: #f2f2f2dc;
 }
 
 th, td {
@@ -50,4 +52,14 @@ mat-form-field {
 h1 {
   text-align: center;
   margin-bottom: 20px;
+}
+
+mat-card{
+  height: 88vh;
+  background-color: rgba(255, 255, 255, 0.244);
+}
+
+.back{
+  background-color: rgba(255, 255, 255, 0.92);
+  height: 88vh;
 }

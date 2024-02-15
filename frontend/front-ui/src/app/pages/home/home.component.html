@@ -7,7 +7,7 @@
   <div class="image">
     <img class="image" src="../../../assets/logo.png" alt="">
   </div>
-  <div class="DASHBOARD">
+  
   <div class="table">
   <ng-container *ngFor="let contentItem of contentData" >
 
@@ -35,9 +35,9 @@
       </div>
     </ng-container>
     <ng-container *ngIf="adminFlag">
-      <div class="card" (click)="navigateToPage(contentItem.name)">
+      <div class="card d-flex flex-wrap" (click)="navigateToPage(contentItem.name)">
         
-          <div class="card-content">
+          <div class="card-content" >
             <img [src]="contentItem.icon" alt="{{ contentItem.name }} Icon" />
             <h2>{{ contentItem.name }}</h2>
           </div>
@@ -47,8 +47,37 @@
     </ng-container>
   </ng-container>
 </div>
-</div>
-</div>
+<!-- <div class="container">
+
+<mat-card class="example-card">
+  <mat-card-header>
+    
+    <mat-card-title><h3><b>VISION</b></h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h5>To Enlighten the young minds with knownledge that are needed</h5>
+    <h5>for them to become quality engineers and contribute to the society</h5>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+ 
+</mat-card>
+<mat-card class="example-card2">
+  <mat-card-header>
+    
+    <mat-card-title><h3><b>MISSION</b></h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h5>To provide with top quality education in the country</h5>
+    <h5>to all the aspiring students in engineering</h5>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+ 
+</mat-card>
+
+</div> -->
+
+
+
 <!-- <div class="card-container" (click)="navigateToPage(contentItem.name)" *ngFor="let contentItem of contentData" class="card">
   <div class="card-content">
     <img [src]="contentItem.icon" alt="{{ contentItem.name }} Icon" />
