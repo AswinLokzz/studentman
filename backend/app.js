@@ -137,6 +137,7 @@ var FeeFormListRouter=require('./routes/feeform')
 var loginrouter=require('./routes/login');
 var timetableRouter=require('./routes/timetable')
 var subjectrouter=require('./routes/subjectdetails')
+var attendancerouter=require('./routes/attendance')
 
 
 
@@ -191,7 +192,8 @@ app.use("/Teachers/list",TeacherListRouter);
 app.use("/Fees/form",FeeFormListRouter)
 app.use("/login",loginrouter);
 app.use("/timetable",timetableRouter)
-app.use("/subjectable",subjectrouter)
+app.use("/subjectable",subjectrouter);
+app.use("/attendance/add",attendancerouter)
 
 
 

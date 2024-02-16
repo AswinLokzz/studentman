@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, DoCheck } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StudentFormService } from 'src/app/services/studentform.service';
 import { timetableService } from 'src/app/services/timetable.service';
@@ -7,41 +7,51 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+declare var $: any;
 @Component({
   selector: 'app-teacherstudentattendance',
   templateUrl: './teacherstudentattendance.component.html',
-  styleUrls: ['./teacherstudentattendance.component.css']
+  styleUrls: ['./teacherstudentattendance.component.css'],
+  
 })
 export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit {
   id: string = '';
   studentList: any[] = [];
   details: any;
+  subject!:string
   sems: any[] = [];
   studenttmetable: any[] = [];
   ntimetable: any[] = [];
   teachersem: any[] = [];
-  uniqueSemesters = new Set();
+  uniqueSemesters:any[]=[]
+  sem:any[]=[]
+  new:any[]=[]
   deptstudents: any[] = [];
   displayedStudents: any[] = [];
   dataSource = new MatTableDataSource<any>([]);
   displayedColumns: string[] = ['select', 'SNO', 'Fullname', 'Semester'];
   selection = new SelectionModel<any>(true, []);
-
+  $: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  date:any
 
-  constructor(private studentlist: StudentFormService, public http: HttpClient, private timetable: timetableService) { }
+  constructor(private studentlist: StudentFormService, public http: HttpClient, private timetable: timetableService) {
+
+   }
 
   ngOnInit(): void {
     this.id = localStorage.getItem("teacher_id") as string;
     console.log("the teacher Id:", this.id);
     this.getstudents();
+
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+ 
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -88,6 +98,28 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
     console.log("the departmentstudents:", this.deptstudents);
   }
 
+   add(){
+    console.log(this.selection.selected)
+    this.selection.selected.forEach((item:any)=>{
+      if(!this.new.includes(item._id)){
+      this.new.push(item._id)
+      }
+    })
+    const data={
+      id:localStorage.getItem('teacher_id'),
+      students:this.new,
+      date:this.date,
+      sub:this.subject
+    }
+    this.http.post('http://localhost:3000/attendance/add', data)
+    .subscribe({
+      next:(res:any)=>{
+        console.log(res)
+      }, error:(err:any)=>{
+        console.log(err)
+      }
+    })
+   }
   getsub() {
     this.timetable.viewSubject().subscribe({
       next: (res: any) => {
@@ -109,17 +141,27 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
     }
     console.log("the needed subjects:", this.ntimetable);
     this.ntimetable.forEach((item: any) => {
-      this.uniqueSemesters.add(item.Semester);
+      this.uniqueSemesters.push({Sem:item.Semester, Subject:item.Subject});
     });
-    this.teachersem = Array.from(this.uniqueSemesters);
-    console.log("the semesters that the teacher is taking", this.teachersem);
+     
+    this.sem = this.uniqueSemesters.filter(
+      (thing, index, self) =>
+        index ===
+        self.findIndex(
+          (t) => t.Subject === thing.Subject && t.Sem === thing.Sem
+        )
+    );
+    // this.teachersem = Array.from(this.uniqueSemesters);
+
+    console.log("the semesters that the teacher is taking", this.sem);
   }
 
   getValue(item: any) {
+    this.subject= item.Subject
     this.displayedStudents = [];
     console.log("selected options:", item);
     for (let x of this.deptstudents) {
-      if (item == x.Semester) {
+      if (item.Sem == x.Semester) {
         this.displayedStudents.push(x);
       }
     }

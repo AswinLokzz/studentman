@@ -5,7 +5,7 @@
     <div class="container">
       <ul>
         <div>
-          <li *ngFor="let i of teachersem" class="options" (click)="getValue(i)">{{i}}</li>
+          <li *ngFor="let i of sem" class="options" (click)="getValue(i)">{{i.Sem}}</li>
         </div>
       </ul>
     </div>
@@ -14,16 +14,41 @@
       <!-- <button mat-raised-button (click)="nclass.resetClass()">Add Table</button> -->
     </div>
   </mat-drawer>
+
+
+
+
   <mat-drawer-content>
+    <h3 class="mt-2 ms-2" *ngIf="subject">Subject:{{subject}}</h3>
     <div class="move">
+          
+      <div class="ms-2 ">
+        <label for="Date"  style="font-size: 0.7cm"
+        >Select  Date</label
+      >
+
+      <input
+        id="txtDate"
+        type="date"
+        class="form-control form-control-lg"
+        name="date"
+        style="cursor: pointer"
+        data-toggle="tooltip"
+        title="Select Anouncement End Date"
+        [(ngModel)]="date"
+      />
+      </div>
+
+    
     <mat-form-field>
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
+
       <!-- Checkbox Column -->
-      <ng-container matColumnDef="select">
+      <ng-container matColumnDef="select" class="mt-5"> 
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox (change)="$event ? toggleAllRows() : null"
                         [checked]="selection.hasValue() && isAllSelected()"
@@ -40,10 +65,11 @@
         </td>
       </ng-container>
 
-      <!-- Position Column -->
+      
+      
       <ng-container matColumnDef="SNO">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> SNO </th>
-        <td mat-cell *matCellDef="let element"> 1 </td>
+        <td mat-cell *matCellDef="let element "> 1 </td>
       </ng-container>
 
       <!-- Name Column -->
@@ -74,5 +100,10 @@
       <td colspan="4">Select semester</td>
     </tr>
   </div>
+  <div id="btn" >
+    <button class="btn btn-primary" (click)="add()"> Add Attendance</button>
+  </div>
   </mat-drawer-content>
 </mat-drawer-container>
+
+
