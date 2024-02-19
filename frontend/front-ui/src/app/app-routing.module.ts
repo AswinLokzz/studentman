@@ -19,6 +19,7 @@ import { FeesideComponent } from './pages/studentside/feeside/feeside.component'
 import { StudenttimetableComponent } from './pages/studentside/studenttimetable/studenttimetable.component';
 import { TeachertimetableComponent } from './pages/teacherside/teachertimetable/teachertimetable.component';
 import { TeacherstudentattendanceComponent } from './pages/teacherside/teacherstudentattendance/teacherstudentattendance.component';
+import { StudentsattendanceComponent } from './pages/studentside/studentsattendance/studentsattendance.component';
 
 const routes: Routes = [
   { path: '', component: LoginpageComponent },
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path:'Students/timetable',
     component:StudenttimetableComponent
+  },
+  {
+    path:'Students/Subjects',
+    component:StudentsattendanceComponent
   },
 
 

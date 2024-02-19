@@ -1,4 +1,5 @@
 const StudentListItem = require('../models/studentspage/StudentListItem.model');
+const attendanceItems=require('../models/attendance/attendance.model')
 
 const getStudentListData = async (req, res) => {
   try {
@@ -35,12 +36,16 @@ const postStudentDetails = async (req, res, next) => {
 
 const getDetails = async (req, res) => {
   try {
-    const id = req.body.id;
+    const id = req.params.id;
     const student = await StudentListItem.findOne({ _id: id });
     if (!student) {
       return res.status(400).send('Student not found');
     }
-    return res.status(201).json({ message: "Success", data: student });
+    const attendance=await attendanceItems.find() 
+    if (!attendance) {
+      return res.status(400).send('Student not found');
+    }
+    return res.status(201).json({ message: "Success", data: student, att:attendance });
   } catch (err) {
     console.error('Error retrieving student details:', err);
     res.status(500).send('Internal Server Error');

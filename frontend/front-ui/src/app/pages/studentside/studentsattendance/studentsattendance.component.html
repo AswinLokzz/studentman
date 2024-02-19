@@ -1,0 +1,44 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <div class="head">
+            <h3>SUBJECTS</h3>
+        </div>
+
+        <div class="se">
+            {{this.details?.Semester}}
+        </div>
+
+        <div class="sub">
+            <ul>
+                <div class="selection">
+                <li li *ngFor="let i of ntimetable[0]?.Subjects" class="options" (click)="clicked(i)" >{{i}}</li>
+            </div>
+            </ul>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="back" *ngIf="show">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Hour</th>
+                    <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let item of attendance">
+                      
+                          <td>{{item.date}}</td>
+                          <td>{{item.hour}}</td>
+                          <td *ngIf="item.studentid.includes(details._id)" class="present">Present</td>
+                          <td *ngIf="!item.studentid.includes(details._id)" class="absent">Absent</td>
+
+    
+                    </tr>
+                    
+                  </tbody>
+            </table>
+        </div>
+    </mat-drawer-content>
+  </mat-drawer-container>

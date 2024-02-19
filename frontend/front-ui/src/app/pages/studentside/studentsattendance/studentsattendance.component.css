@@ -1,0 +1,63 @@
+.example-container {
+  width: 95%;
+  height: 90vh;
+  margin: 10px;
+  border: 1px solid #555;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50px;
+  opacity: 85%;
+}
+
+mat-drawer {
+  width: 300px;
+}
+
+h3 {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.head {
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.se {
+  background-color: rgb(194, 244, 244);
+  font-weight: 500;
+  align-items: center;
+  font-size: larger;
+  padding: 5px;
+}
+
+.options {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  list-style-type: none;
+  padding: 10px;
+  font-size: large;
+  font-weight: 400;
+}
+
+.options:hover {
+  background-color: lightgray;
+}
+
+li{
+  text-decoration: none;
+}
+
+.present{
+  color: blue;
+  background-color: rgb(128, 180, 128)
+}
+.absent{
+  color: red;
+  background-color: black
+}

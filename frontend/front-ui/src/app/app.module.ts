@@ -22,6 +22,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTreeModule} from '@angular/material/tree';
 
 
 
@@ -60,6 +61,7 @@ import { TableComponent } from './pages/timetable/table/table.component';
 import { StudenttimetableComponent } from './pages/studentside/studenttimetable/studenttimetable.component';
 import { TeachertimetableComponent } from './pages/teacherside/teachertimetable/teachertimetable.component';
 import { TeacherstudentattendanceComponent } from './pages/teacherside/teacherstudentattendance/teacherstudentattendance.component';
+import { StudentsattendanceComponent } from './pages/studentside/studentsattendance/studentsattendance.component';
 
 
 
@@ -94,7 +96,8 @@ import { TeacherstudentattendanceComponent } from './pages/teacherside/teacherst
     TableComponent,
     StudenttimetableComponent,
     TeachertimetableComponent,
-    TeacherstudentattendanceComponent
+    TeacherstudentattendanceComponent,
+    StudentsattendanceComponent
   
     
   ],
@@ -125,7 +128,8 @@ import { TeacherstudentattendanceComponent } from './pages/teacherside/teacherst
     MatPaginatorModule,
     MatSortModule,
     ToastrModule.forRoot(),
-    MatTabsModule
+    MatTabsModule,
+    MatTreeModule
    
     
   ],

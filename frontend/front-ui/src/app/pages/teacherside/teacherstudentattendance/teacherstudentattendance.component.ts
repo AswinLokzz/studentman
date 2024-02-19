@@ -16,6 +16,7 @@ declare var $: any;
 })
 export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit {
   id: string = '';
+  index=1
   studentList: any[] = [];
   details: any;
   subject!:string
