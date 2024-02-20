@@ -36,9 +36,20 @@
         data-toggle="tooltip"
         title="Select Anouncement End Date"
         [(ngModel)]="date"
+        (change)="changeDate()"
       />
-      </div>
 
+      <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="">Option 1</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      </div>
+      <div *ngIf="hour">
+         <h4>Hour is {{hour}}</h4>
+      </div>
     
     <mat-form-field>
       <mat-label>Filter</mat-label>

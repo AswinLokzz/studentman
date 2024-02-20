@@ -21,7 +21,7 @@ const addattendance= async(req,res)=>{
     studentid: req.body.students,
     date:req.body.date,
     Subject:req.body.sub,
-    hour:item.Hour,
+    hour:req.body.hr,
     Department:item.Department,
     Semester:item.Semester
 

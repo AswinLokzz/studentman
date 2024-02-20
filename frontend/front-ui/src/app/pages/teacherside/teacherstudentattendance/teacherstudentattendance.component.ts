@@ -32,10 +32,14 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
   dataSource = new MatTableDataSource<any>([]);
   displayedColumns: string[] = ['select', 'SNO', 'Fullname', 'Semester'];
   selection = new SelectionModel<any>(true, []);
+  hour!:string
+  hours:any[]=[]
+  selected = 'option2';
   $: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   date:any
+  semester:any
 
   constructor(private studentlist: StudentFormService, public http: HttpClient, private timetable: timetableService) {
 
@@ -99,7 +103,24 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
     console.log("the departmentstudents:", this.deptstudents);
   }
 
+  changeDate(){
+    const selectedDate = new Date(this.date);
+    const dayOfWeek = selectedDate.getDay();
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayOfWeekString = daysOfWeek[dayOfWeek];
+    console.log(dayOfWeekString);
+    this.ntimetable.filter((item:any)=>{
+       if(item.Semester==this.semester && item.Day===dayOfWeekString){
+          this.hours.push(item.Hour)
+       }
+    })
+    console.log("hour", this.hour)
+
+  }
+
    add(){
+
+
     console.log(this.selection.selected)
     this.selection.selected.forEach((item:any)=>{
       if(!this.new.includes(item._id)){
@@ -110,7 +131,8 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
       id:localStorage.getItem('teacher_id'),
       students:this.new,
       date:this.date,
-      sub:this.subject
+      sub:this.subject,
+      hr:this.hour
     }
     this.http.post('http://localhost:3000/attendance/add', data)
     .subscribe({
@@ -159,6 +181,7 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
 
   getValue(item: any) {
     this.subject= item.Subject
+    this.semester=item.Sem
     this.displayedStudents = [];
     console.log("selected options:", item);
     for (let x of this.deptstudents) {
