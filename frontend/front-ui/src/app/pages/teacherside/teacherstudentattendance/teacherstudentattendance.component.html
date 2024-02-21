@@ -39,10 +39,12 @@
         (change)="changeDate()"
       />
 
-      <mat-form-field>
-        <mat-label>Select an option</mat-label>
-        <mat-select [(value)]="selected">
-          <mat-option *ngFor="">Option 1</mat-option>
+        
+      <mat-form-field *ngFor="let op of hours">
+        <mat-label>Select an Hour</mat-label>
+        <mat-select [(ngModel)]="selected" (selectionChange)="onSelectionChange()">
+          <mat-option disabled>Select an option</mat-option>
+          <mat-option  [value]="op">{{op}}</mat-option>
         </mat-select>
       </mat-form-field>
 

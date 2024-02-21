@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   public adminFlag:boolean = false
   public studentItems= ['Fees','Timetable','Subjects']
   public teacherItems= ['Students','Timetable']
+  public adminItems=['Students','Teachers','Fees','Timetable']
   constructor(private contentService: HomeContentService, private router: Router) {}
 
   ngOnInit(): void {

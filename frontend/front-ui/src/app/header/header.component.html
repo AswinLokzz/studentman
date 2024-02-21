@@ -3,7 +3,7 @@
   <span class="app-name"><img src="../../assets/logo.png" alt="" > </span>
   <span class="spacer"></span>
 
-  <div>
+  <div *ngIf="log">
 
      <button *ngIf="state=='Admin'"  mat-icon-button [routerLink]="'admin/home'" routerLinkActive="active-link">
       <mat-icon>home</mat-icon>
@@ -29,10 +29,7 @@
 
     </button>
 
-    <button mat-icon-button [routerLink]="'/contact'" routerLinkActive="active-link">
-      <mat-icon>school</mat-icon>
-
-    </button>
+    
     <!-- Add more navigation links based on your application -->
 
     <!-- <span class="spacer"></span> -->

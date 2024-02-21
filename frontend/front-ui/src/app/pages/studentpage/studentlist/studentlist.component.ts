@@ -1,9 +1,13 @@
 // studentlist.component.ts
-import { Component, Input, OnInit,OnDestroy } from '@angular/core';
+import { Component, Input, OnInit,OnDestroy, ViewChild } from '@angular/core';
 import { StudentForm } from 'src/app/models/studentform.model';
 import { StudentFormService } from 'src/app/services/studentform.service';
 import { Subscription,Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
 
 @Component({
   selector: 'studentlist',
@@ -12,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class StudentlistComponent implements OnInit,OnDestroy{
   [x: string]: any;
+  dataSource = new MatTableDataSource<any>([]);
     // students:StudentForm[]=[
     //   {Fullname:"Aswin",Gender:"Male",Year:"Fourth",Semester:"S8",District:"Thrissur",Address:"Thaiparambil House",Email:"aswintsugathan@gmail",Username:"Aswi@2000",Password:"Aswi@2000"},
     //   {Fullname:"Aswiny",Gender:"Female",Year:"Third",Semester:"S6",District:"Ernakulam",Address:"Thaiparambil House, Thrissur, valapad",Email:"aswint@gmail",Username:"Aswi@2001",Password:"Aswi@2001"},
@@ -19,6 +24,8 @@ export class StudentlistComponent implements OnInit,OnDestroy{
     // ]
 
   displayedColumns: string[] = ['regNo', 'name', 'semester', 'year', 'view'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
 
   viewStudent(student: StudentForm): void {
@@ -28,11 +35,11 @@ export class StudentlistComponent implements OnInit,OnDestroy{
 
   // StudentService: StudentFormService = new StudentFormService;
 
-  constructor(private StudentService:StudentFormService, private router:Router){
-    // this.StudentService=StudentService;
+  constructor(private StudentService:StudentFormService, private router:Router, ){
+   
   }
 
-   StudentContentData: StudentForm[]=[];
+  StudentContentData: StudentForm[]=[];
 
   students:StudentForm[]=[]
   studentlist:any[] = []
@@ -47,11 +54,17 @@ export class StudentlistComponent implements OnInit,OnDestroy{
     })
     this.StudentFormSub=this.StudentService.getFormsUpdatedListener().subscribe((StudentContentData:StudentForm[])=>{
       this.StudentContentData=StudentContentData
+      this.dataSource.data = this.studentlist;
     })
   }
 
   ngOnDestroy(): void {
     this.StudentFormSub.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   navigateToView(_id:any){
@@ -60,11 +73,11 @@ export class StudentlistComponent implements OnInit,OnDestroy{
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this['dataSource'].filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
 
-    if (this['dataSource'].paginator) {
-      this['dataSource'].paginator.firstPage();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
 }

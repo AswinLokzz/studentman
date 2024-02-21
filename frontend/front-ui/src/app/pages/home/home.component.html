@@ -34,7 +34,7 @@
   
       </div>
     </ng-container>
-    <ng-container *ngIf="adminFlag">
+    <ng-container *ngIf="adminFlag && adminItems.includes(contentItem.name)">
       <div class="card d-flex flex-wrap" (click)="navigateToPage(contentItem.name)">
         
           <div class="card-content" >

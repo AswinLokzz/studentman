@@ -34,7 +34,7 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
   selection = new SelectionModel<any>(true, []);
   hour!:string
   hours:any[]=[]
-  selected = 'option2';
+  selected = 'Select a Hour';
   $: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -110,11 +110,13 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
     const dayOfWeekString = daysOfWeek[dayOfWeek];
     console.log(dayOfWeekString);
     this.ntimetable.filter((item:any)=>{
-       if(item.Semester==this.semester && item.Day===dayOfWeekString){
+     
+
+       if((item.Semester===this.semester) && (item.Day==dayOfWeekString)){
           this.hours.push(item.Hour)
        }
     })
-    console.log("hour", this.hour)
+    console.log('hours', this.hours)
 
   }
 
@@ -215,5 +217,10 @@ export class TeacherstudentattendanceComponent implements OnInit, AfterViewInit 
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+  onSelectionChange(){
+    this.hour=this.selected
+    console.log(this.hour)
   }
 }
